@@ -40,6 +40,22 @@ sudo /Applications/Install\ macOS\ Monterey.app/Contents/Resources/createinstall
 ### 6. Время ожидания
 Этап валидации может занимать 15-45+ минут на медленных USB-накопителях. Подождите минимум 30-40 минут перед тем, как прерывать процесс.
 
+## Диагностика: запуск OCLP из терминала
+
+Чтобы увидеть подробный лог и понять, зависло ли приложение:
+```bash
+/path/to/OpenCore-Patcher.app/Contents/MacOS/OpenCore-Patcher
+```
+Это выведет лог в терминал в реальном времени и покажет, на каком именно этапе застрял процесс.
+
+## Установка Monterey без OCLP (для MacBook Air 2013)
+
+MacBook Air 2013 официально поддерживает Monterey. Можно установить напрямую:
+```bash
+softwareupdate --fetch-full-installer --full-installer-version 12.7
+```
+Или через Системные настройки → Обновление ПО (если текущая ОС — Catalina или Big Sur).
+
 ## Полезные ссылки
 - [OpenCore Legacy Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher)
 - [Список поддерживаемых моделей Mac](https://dortania.github.io/OpenCore-Legacy-Patcher/MODELS.html)
