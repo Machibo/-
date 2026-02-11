@@ -86,6 +86,44 @@ softwareupdate --fetch-full-installer --full-installer-version 12.7
 ```
 Или через Системные настройки → Обновление ПО.
 
+## Пошаговая инструкция: установка macOS Monterey через Терминал + OCLP
+
+### Шаг 1. Откройте Терминал
+Finder → Программы → Утилиты → Терминал
+
+### Шаг 2. Узнайте номер диска флешки
+```bash
+diskutil list
+```
+Найдите флешку (128 ГБ) — запомните номер (например disk2). НЕ disk0 и НЕ disk1.
+
+### Шаг 3. Отформатируйте флешку
+```bash
+sudo diskutil eraseDisk JHFS+ "Installer" GPT /dev/disk2
+```
+(замените disk2 на ваш номер)
+
+### Шаг 4. Создайте загрузочный установщик (20-40 минут)
+```bash
+sudo "/Applications/Install macOS Monterey.app/Contents/Resources/createinstallmedia" --volume /Volumes/Installer --nointeraction
+```
+
+### Шаг 5. Установите OpenCore на флешку через OCLP
+- "Build and Install OpenCore" → "Build OpenCore" → "Install OpenCore to disk"
+- Выберите USB-флешку → раздел EFI
+
+### Шаг 6. Загрузитесь с флешки
+- Выключите Mac, зажмите Option (Alt) + кнопка включения
+- Выберите "EFI Boot" или "Install macOS Monterey"
+
+### Шаг 7. Установите macOS Monterey
+- Выберите "Установить macOS Monterey" → диск Macintosh HD
+- Дождитесь завершения (несколько перезагрузок)
+
+### Шаг 8. Патч системы после установки
+- Откройте OCLP → "Post-Install Root Patch" → "Start Root Patching"
+- Это восстановит Wi-Fi, графику и другие компоненты
+
 ## Полезные ссылки
 - [OpenCore Legacy Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher)
 - [Список поддерживаемых моделей Mac](https://dortania.github.io/OpenCore-Legacy-Patcher/MODELS.html)
