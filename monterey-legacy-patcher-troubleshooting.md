@@ -2,17 +2,15 @@
 
 ## Проблема: зависание на "Validating Installer Integrity..."
 
-При создании установщика macOS Monterey через OpenCore Legacy Patcher (OCLP) процесс может зависать на этапе валидации целостности установщика.
+При создании установщика macOS Monterey через OpenCore Legacy Patcher (OCLP) процесс может зависать на этапе валидации целостности установщика. Если ожидание длится более 40-60 минут — установщик скорее всего повреждён.
 
-## Важно: MacBook Air 2013
+## Определение модели Mac
 
-**MacBook Air 2013 (MacBookAir6,1 / MacBookAir6,2) официально поддерживает macOS Monterey (12.x).**
-Вам НЕ нужен OpenCore Legacy Patcher для установки Monterey на эту модель. Установите систему стандартным способом:
-- Через Mac App Store
-- Через Recovery Mode (Cmd+R при загрузке)
-- Через утилиту `createinstallmedia`
+Проверьте модель: Apple Menu → About This Mac.
+- **MacBook Air 2013+ (MacBookAir6,x)** — Monterey поддерживается официально, OCLP не нужен.
+- **MacBook Air 2012 (MacBookAir5,x)** — Monterey НЕ поддерживается, нужен OCLP.
 
-OCLP нужен только для macOS Ventura (13) и новее на этой модели.
+Если в "Обновлении ПО" предлагается только Big Sur, а Monterey не появляется — ваш Mac не поддерживается официально и OCLP необходим.
 
 ## Если всё же используете OCLP
 
@@ -31,11 +29,36 @@ https://github.com/dortania/OpenCore-Legacy-Patcher/releases
 ### 4. Переcкачайте установщик
 Повреждённый образ установщика — частая причина зависания. Удалите старый и скачайте заново через OCLP.
 
-### 5. Создание установщика вручную
+### 5. Создание установщика вручную (если OCLP зависает)
+
+Шаг 1: Удалите старый установщик
 ```bash
-sudo /Applications/Install\ macOS\ Monterey.app/Contents/Resources/createinstallmedia --volume /Volumes/MyVolume
+sudo rm -rf "/Applications/Install macOS Monterey.app"
 ```
-Затем через OCLP установите только OpenCore на флешку (пункт "Install OpenCore to USB").
+
+Шаг 2: Скачайте заново через OCLP → "Download macOS Installer"
+
+Шаг 3: Проверьте размер (должен быть ~12-13 ГБ)
+```bash
+du -sh "/Applications/Install macOS Monterey.app"
+```
+
+Шаг 4: Узнайте номер диска USB-флешки
+```bash
+diskutil list
+```
+
+Шаг 5: Отформатируйте флешку (замените diskN на номер флешки)
+```bash
+sudo diskutil eraseDisk JHFS+ "MyVolume" GPT /dev/diskN
+```
+
+Шаг 6: Создайте загрузочный установщик вручную
+```bash
+sudo "/Applications/Install macOS Monterey.app/Contents/Resources/createinstallmedia" --volume /Volumes/MyVolume --nointeraction
+```
+
+Шаг 7: Через OCLP выполните только "Install OpenCore to disk" на эту флешку.
 
 ### 6. Время ожидания
 Этап валидации может занимать 15-45+ минут на медленных USB-накопителях. Подождите минимум 30-40 минут перед тем, как прерывать процесс.
@@ -48,13 +71,13 @@ sudo /Applications/Install\ macOS\ Monterey.app/Contents/Resources/createinstall
 ```
 Это выведет лог в терминал в реальном времени и покажет, на каком именно этапе застрял процесс.
 
-## Установка Monterey без OCLP (для MacBook Air 2013)
+## Установка Monterey без OCLP (только для MacBook Air 2013+)
 
-MacBook Air 2013 официально поддерживает Monterey. Можно установить напрямую:
+Если ваш Mac **официально поддерживает** Monterey (модель 2013 года и новее):
 ```bash
 softwareupdate --fetch-full-installer --full-installer-version 12.7
 ```
-Или через Системные настройки → Обновление ПО (если текущая ОС — Catalina или Big Sur).
+Или через Системные настройки → Обновление ПО.
 
 ## Полезные ссылки
 - [OpenCore Legacy Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher)
