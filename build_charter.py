@@ -416,15 +416,13 @@ heading("Certification", level=2)
 body("This excerpt is issued in accordance with the original Charter of the Association.")
 body("Date: November 17, 2025")
 
-# Blank space for handwritten signature (3 empty lines)
-for _ in range(3):
-    doc.add_paragraph()
+doc.add_paragraph()
 
-# Signature line (underline)
-sig_line = doc.add_paragraph()
-sig_line.alignment = WD_ALIGN_PARAGRAPH.LEFT
-sig_run = sig_line.add_run("_" * 40)
-sig_run.font.size = Pt(11)
+# Signature image
+sig_img_para = doc.add_paragraph()
+sig_img_para.alignment = WD_ALIGN_PARAGRAPH.LEFT
+sig_run = sig_img_para.add_run()
+sig_run.add_picture("/workspace/Подпись устав .png", width=Inches(2.2))
 
 # Name and details
 sig_name = doc.add_paragraph()
