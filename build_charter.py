@@ -415,8 +415,29 @@ doc.add_paragraph()
 heading("Certification", level=2)
 body("This excerpt is issued in accordance with the original Charter of the Association.")
 body("Date: November 17, 2025")
-doc.add_paragraph()
-body("Domenico Liguori\nPresident\nAssociation of Business Professionals (EMEA)\ninfo@emeaabp.org")
+
+# Blank space for handwritten signature (3 empty lines)
+for _ in range(3):
+    doc.add_paragraph()
+
+# Signature line (underline)
+sig_line = doc.add_paragraph()
+sig_line.alignment = WD_ALIGN_PARAGRAPH.LEFT
+sig_run = sig_line.add_run("_" * 40)
+sig_run.font.size = Pt(11)
+
+# Name and details
+sig_name = doc.add_paragraph()
+sig_name.alignment = WD_ALIGN_PARAGRAPH.LEFT
+r_name = sig_name.add_run("Domenico Liguori")
+r_name.bold = True
+r_name.font.size = Pt(11)
+
+for line in ["President", "Association of Business Professionals (EMEA)", "info@emeaabp.org"]:
+    p = doc.add_paragraph()
+    p.alignment = WD_ALIGN_PARAGRAPH.LEFT
+    r = p.add_run(line)
+    r.font.size = Pt(11)
 
 # ══════════════════════════════════════════════════════════════════════════════
 # Save

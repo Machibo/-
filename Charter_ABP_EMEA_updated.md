@@ -136,9 +136,15 @@ This excerpt is issued in accordance with the original Charter of the Associatio
 
 **Date:** November 17, 2025
 
----
+&nbsp;
 
-Domenico Liguori
+&nbsp;
+
+&nbsp;
+
+________________________________________
+
+**Domenico Liguori**
 President
 Association of Business Professionals (EMEA)
 info@emeaabp.org
