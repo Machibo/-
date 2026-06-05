@@ -414,7 +414,6 @@ doc.add_paragraph()
 # ══════════════════════════════════════════════════════════════════════════════
 heading("Certification", level=2)
 body("This excerpt is issued in accordance with the original Charter of the Association.")
-body("Date: November 17, 2025")
 
 doc.add_paragraph()
 
@@ -423,6 +422,14 @@ sig_img_para = doc.add_paragraph()
 sig_img_para.alignment = WD_ALIGN_PARAGRAPH.LEFT
 sig_run = sig_img_para.add_run()
 sig_run.add_picture("/workspace/Подпись устав .png", width=Inches(2.2))
+
+# Date below the signature
+p_date = doc.add_paragraph()
+p_date.alignment = WD_ALIGN_PARAGRAPH.LEFT
+r_date = p_date.add_run("Date: November 17, 2025")
+r_date.font.size = Pt(11)
+
+doc.add_paragraph()
 
 # Name and details
 sig_name = doc.add_paragraph()
