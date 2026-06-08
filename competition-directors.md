@@ -90,16 +90,19 @@ Additional information gathered from award websites, press releases, and public 
 
 | Field | Details |
 |-------|---------|
-| **Signatory** | Имя **не указано текстом** в документе — только рукописная подпись (изображение) |
+| **Signatory** | **Rachel Limmares** |
 | **Role** | Organizing Committee |
 | **Email** | support@veltoawards.com |
 | **Website** | https://veltoawards.com |
 
 **Дополнительная информация:**
-- Единственная из 5 премий, где в шаблоне **нет напечатанного имени подписанта** — только рукописная подпись и "Organizing Committee / Velto European Awards"
+- Имя Rachel Limmares присутствует только в виде **рукописной подписи** (изображение) в шаблоне — напечатанное имя под подписью отсутствует, указано лишь "Organizing Committee / Velto European Awards"
+- Единственная из 5 премий, где подписант не дублируется текстом в документе
 - На [сайте](https://veltoawards.com/about) не указаны конкретные имена команды или руководства
 - На странице [Judging Process](https://veltoawards.com/judging_process) описан процесс, но нет имен организаторов
+- Публичных профилей Rachel Limmares, связанных с Velto European Awards, в открытых источниках не найдено
 - Премия позиционируется как европейская ("Elite Recognition for Industry Leaders and Innovators")
+- Контактный адрес на сайте: Rue de Roquebillière, 06300 Nice, France
 - 4 категории: Business Growth & Strategy Excellence, European Beauty & Wellness Innovators, AI & Digital Transformation Awards, Sustainable Futures Leadership
 - **Примечание:** velto.fr — это другая компания (французская текстильная), не связана с Velto European Awards
 
@@ -113,4 +116,4 @@ Additional information gathered from award websites, press releases, and public 
 | Global 1000 Award | **Jonathan R. Blake** | Organizing Committee | Delaware, USA | hello@global1000award.com |
 | NOVA Awards | **Claire Fournier** | Organizing Committee | Valbonne, France | info@nova-awards.com |
 | Glonary Awards | **Patrick Bovis** | Chairman | Las Vegas, NV, USA | Press@glonaryawards.com |
-| Velto European Awards | *(только подпись)* | Organizing Committee | — | support@veltoawards.com |
+| Velto European Awards | **Rachel Limmares** | Organizing Committee | Nice, France | support@veltoawards.com |
