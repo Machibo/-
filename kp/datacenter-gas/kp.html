@@ -77,6 +77,23 @@
   .hdr .hdr-right .sec{font-weight:700;color:var(--green-700);}
   .hdr .hdr-right .page-no{margin-top:1px;color:var(--grey-300);}
 
+  /* Minimal header for inner pages (no logo) */
+  .hdr.minimal{
+    height:12mm;padding:7mm 14mm 0 14mm;
+    border-bottom:none;
+  }
+  .hdr.minimal .sec-left{
+    font-size:10px;font-weight:800;color:var(--green-700);
+    letter-spacing:.14em;text-transform:uppercase;
+    display:flex;align-items:center;gap:10px;
+  }
+  .hdr.minimal .sec-left::before{
+    content:"";width:14px;height:2px;background:var(--grad-green);border-radius:2px;
+  }
+  .hdr.minimal .pg{
+    font-size:9px;color:var(--grey-300);letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+  }
+
   .ftr{
     height:11mm;padding:0 14mm;
     display:flex;align-items:center;justify-content:space-between;
@@ -176,7 +193,7 @@
   }
 
   /* left side */
-  .cover .left{display:flex;flex-direction:column;justify-content:space-between;padding-top:2mm;padding-bottom:2mm;}
+  .cover .left{display:flex;flex-direction:column;gap:16px;padding-top:2mm;padding-bottom:2mm;}
   .cover .left h1{font-size:50px;letter-spacing:-.028em;margin-top:2px;}
   .cover .left h1 .accent{color:var(--green-700);}
   .cover .left .lead{
@@ -184,7 +201,7 @@
   }
   .cover .left .lead b{color:var(--green-800);}
   .cover .left .quick{
-    margin-top:18px;display:grid;grid-template-columns:repeat(2,1fr);gap:8px;max-width:140mm;
+    display:grid;grid-template-columns:repeat(2,1fr);gap:8px;max-width:140mm;
   }
   .cover .left .quick .qi{
     background:var(--green-050);border:1px solid var(--green-100);border-radius:var(--radius-sm);
@@ -194,14 +211,14 @@
   .cover .left .quick .qi .l{font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--grey-700);margin-top:1px;}
   .cover .left .signature{
     display:flex;align-items:center;gap:10px;font-size:10px;color:var(--grey-500);
-    letter-spacing:.04em;margin-top:14px;
+    letter-spacing:.04em;
   }
   .cover .left .signature .pill{font-size:9.5px;}
 
   /* right side — dark offer panel */
   .cover .right{
     background:var(--grad-dark);color:#fff;border-radius:var(--radius-lg);
-    padding:20mm 12mm 12mm 12mm;display:flex;flex-direction:column;
+    padding:16mm 12mm 12mm 12mm;display:flex;flex-direction:column;
     box-shadow:var(--shadow-dark);position:relative;overflow:hidden;
   }
   .cover .right::before{
@@ -228,7 +245,7 @@
     margin-top:6px;display:flex;align-items:baseline;gap:8px;
   }
   .cover .right .price .v{
-    font-size:90px;font-weight:900;letter-spacing:-.04em;line-height:.95;color:#fff;
+    font-size:78px;font-weight:900;letter-spacing:-.04em;line-height:.95;color:#fff;
   }
   .cover .right .price .u{
     font-size:16px;font-weight:800;color:#B7E1BE;letter-spacing:.02em;
@@ -399,7 +416,7 @@
   .cost .snap{
     background:#fff;border:1px solid var(--border);border-radius:var(--radius-md);
     padding:16px 18px;box-shadow:var(--shadow-card);
-    display:flex;flex-direction:column;gap:10px;flex:1;
+    display:flex;flex-direction:column;gap:10px;flex:0 0 auto;
   }
   .cost .snap h4{margin-bottom:2px;}
   .cost .snap .duo{
@@ -419,24 +436,25 @@
   .cost .snap .meta-row:first-of-type{border-top:none;padding-top:2px;}
   .cost .snap .meta-row b{color:var(--green-800);font-weight:800;}
 
-  .cost .promo{
+  .cost .roadmap{
     background:var(--grad-dark);color:#fff;border-radius:var(--radius-md);
-    padding:14px 16px;box-shadow:var(--shadow-dark);position:relative;overflow:hidden;
-    flex:1;display:flex;flex-direction:column;justify-content:center;gap:6px;
+    padding:16px 18px;box-shadow:var(--shadow-dark);position:relative;overflow:hidden;
+    display:flex;flex-direction:column;gap:10px;flex:0 0 auto;
   }
-  .cost .promo::before{
+  .cost .roadmap::before{
     content:"";position:absolute;right:-25mm;bottom:-25mm;width:75mm;height:75mm;
-    background:radial-gradient(circle,#4CB85F2A 0%,transparent 65%);border-radius:50%;
+    background:radial-gradient(circle,#4CB85F26 0%,transparent 65%);border-radius:50%;pointer-events:none;
   }
-  .cost .promo > *{position:relative;z-index:1;}
-  .cost .promo .tag{
-    display:inline-flex;align-items:center;gap:6px;align-self:flex-start;
-    padding:4px 10px;border-radius:999px;background:#E3A613;color:#3A2A00;
-    font-weight:800;font-size:9px;letter-spacing:.09em;text-transform:uppercase;
+  .cost .roadmap > *{position:relative;z-index:1;}
+  .cost .roadmap h4{color:#fff;font-size:11px;}
+  .cost .roadmap .steps{display:flex;flex-direction:column;gap:7px;}
+  .cost .roadmap .step{display:flex;align-items:center;gap:11px;font-size:10.5px;color:#E8F5EC;line-height:1.4;}
+  .cost .roadmap .step .n{
+    width:22px;height:22px;border-radius:50%;background:#4CB85F;color:#0E2E1E;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+    font-weight:900;font-size:10.5px;
   }
-  .cost .promo h3{color:#fff;font-size:15px;line-height:1.3;}
-  .cost .promo .desc{font-size:10.5px;color:#B7D6BF;line-height:1.5;}
-  .cost .promo .desc b{color:#fff;}
+  .cost .roadmap .step .t{color:#E8F5EC;}
 
   /* ===================================================================
      PAGE 5 · INCLUDED
@@ -579,8 +597,7 @@
   <div class="hdr">
     <div class="logo"><img src="assets/logo-asgard.svg" alt="ASGard"/></div>
     <div class="hdr-right">
-      <div class="sec">КП № 0610-01</div>
-      <div class="page-no">от 10.06.2026 · стр 1 / 7</div>
+      <div class="page-no" style="color:var(--grey-500);font-size:10px;letter-spacing:.06em;text-transform:none">от 10 июня 2026 г.</div>
     </div>
   </div>
 
@@ -589,7 +606,7 @@
     <div class="split">
 
       <div class="left">
-        <div>
+        <div class="head">
           <span class="eyebrow">Коммерческое предложение</span>
           <h1>Дата-центр<br/>на собственной <span class="accent">газогенерации</span></h1>
           <div class="lead">
@@ -599,13 +616,13 @@
             к&nbsp;<b>магистральному газопроводу</b> с природным газом&nbsp;по&nbsp;ГОСТу&nbsp;—
             не скважинным, не попутным, не отбензиненным.
           </div>
+        </div>
 
-          <div class="quick">
-            <div class="qi"><div class="v">9 000 000 ₽</div><div class="l">1 ГПУ Weichai · с НДС</div></div>
-            <div class="qi"><div class="v">$ 30 / шт</div><div class="l">Установочный платёж за&nbsp;ASIC</div></div>
-            <div class="qi"><div class="v">12 мес</div><div class="l">Гарантия на оборудование</div></div>
-            <div class="qi"><div class="v">от 1 до 3</div><div class="l">станций на 1&nbsp;клиента</div></div>
-          </div>
+        <div class="quick">
+          <div class="qi"><div class="v">9 000 000 ₽</div><div class="l">1 ГПУ Weichai · с НДС</div></div>
+          <div class="qi"><div class="v">$ 30 / шт</div><div class="l">Установочный платёж за&nbsp;ASIC</div></div>
+          <div class="qi"><div class="v">12 мес</div><div class="l">Гарантия на оборудование</div></div>
+          <div class="qi"><div class="v">от 1 до 3</div><div class="l">станций на 1&nbsp;клиента</div></div>
         </div>
 
         <div class="signature">
@@ -656,32 +673,17 @@
 
     </div>
 
-    <div class="strip">
-      <div class="l">В тариф включено</div>
-      <div class="items">
-        <span class="item"><span class="dot"></span>Природный газ ГОСТ</span>
-        <span class="item"><span class="dot"></span>Инженерный сервис</span>
-        <span class="item"><span class="dot"></span>Охрана 24/7</span>
-        <span class="item"><span class="dot"></span>Интернет-канал</span>
-        <span class="item"><span class="dot"></span>Плановое ТО</span>
-      </div>
-    </div>
-
   </div>
 </section>
 
 <!-- ============================ PAGE 2 · LOCATION ============================ -->
 <section class="page loc">
-  <div class="hdr">
-    <div class="logo"><img src="assets/logo-asgard.svg" alt="ASGard"/></div>
-    <div class="hdr-right">
-      <div class="sec">Раздел 01 · Площадка</div>
-      <div class="page-no">Стр 2 / 7</div>
-    </div>
+  <div class="hdr minimal">
+    <div class="sec-left">Раздел 01 · Площадка</div>
+    <div class="pg">Стр 2 / 7</div>
   </div>
 
   <div class="body">
-    <span class="eyebrow">О площадке</span>
     <h2>Дата-центр ASGard во&nbsp;Владимирской&nbsp;области</h2>
     <div class="accent-line"></div>
     <p class="muted" style="max-width:230mm">
@@ -773,16 +775,12 @@
 
 <!-- ============================ PAGE 3 · FORMATS ============================ -->
 <section class="page fmt">
-  <div class="hdr">
-    <div class="logo"><img src="assets/logo-asgard.svg" alt="ASGard"/></div>
-    <div class="hdr-right">
-      <div class="sec">Раздел 02 · Форматы</div>
-      <div class="page-no">Стр 3 / 7</div>
-    </div>
+  <div class="hdr minimal">
+    <div class="sec-left">Раздел 02 · Форматы</div>
+    <div class="pg">Стр 3 / 7</div>
   </div>
 
   <div class="body">
-    <span class="eyebrow">Форматы участия</span>
     <h2>Как устроено участие в&nbsp;проекте</h2>
     <div class="accent-line"></div>
     <p class="muted" style="max-width:230mm">
@@ -846,16 +844,12 @@
 
 <!-- ============================ PAGE 4 · COST ============================ -->
 <section class="page cost">
-  <div class="hdr">
-    <div class="logo"><img src="assets/logo-asgard.svg" alt="ASGard"/></div>
-    <div class="hdr-right">
-      <div class="sec">Раздел 03 · Состав и&nbsp;стоимость</div>
-      <div class="page-no">Стр 4 / 7</div>
-    </div>
+  <div class="hdr minimal">
+    <div class="sec-left">Раздел 03 · Состав и&nbsp;стоимость</div>
+    <div class="pg">Стр 4 / 7</div>
   </div>
 
   <div class="body">
-    <span class="eyebrow">Состав сделки</span>
     <h2>Состав и&nbsp;стоимость</h2>
     <div class="accent-line"></div>
     <p class="muted" style="max-width:230mm">
@@ -908,7 +902,7 @@
         <div class="cta">
           <div class="l">
             <div class="lbl">2 · Тариф размещения «под ключ»</div>
-            <div class="t">Газ · сервис · охрана · интернет · плановое&nbsp;ТО</div>
+            <div class="t">За фактически потреблённую электроэнергию&nbsp;ASIC</div>
           </div>
           <div class="price">
             <div class="v">3,5&nbsp;<span style="font-size:24px;font-weight:800">₽</span></div>
@@ -949,14 +943,28 @@
           </div>
         </div>
 
-        <div class="promo">
-          <span class="tag"><span style="width:6px;height:6px;background:#3A2A00;border-radius:50%;display:inline-block"></span>Спецоффер · первые 5 МВт</span>
-          <h3>Тариф&nbsp;3,5&nbsp;₽/кВт·ч действует на&nbsp;первые 5&nbsp;МВт законтрактованной мощности</h3>
-          <div class="desc">
-            Из общей планируемой мощности площадки <b>24&nbsp;МВт</b>.
-            После выбора первых 5&nbsp;МВт тариф для новых клиентов будет пересмотрен.
+        <div class="roadmap">
+          <h4>Следующие шаги</h4>
+          <div class="steps">
+            <div class="step">
+              <span class="n">1</span>
+              <span class="t">Заявка и&nbsp;индивидуальный расчёт под&nbsp;ваш парк ASIC</span>
+            </div>
+            <div class="step">
+              <span class="n">2</span>
+              <span class="t">Договор поставки и&nbsp;размещения, согласование сроков</span>
+            </div>
+            <div class="step">
+              <span class="n">3</span>
+              <span class="t">Поставка, монтаж и&nbsp;пусконаладка на&nbsp;площадке</span>
+            </div>
+            <div class="step">
+              <span class="n">4</span>
+              <span class="t">Запуск и&nbsp;круглосуточная эксплуатация</span>
+            </div>
           </div>
         </div>
+
       </div>
     </div>
   </div>
@@ -969,16 +977,12 @@
 
 <!-- ============================ PAGE 5 · INCLUDED ============================ -->
 <section class="page incl">
-  <div class="hdr">
-    <div class="logo"><img src="assets/logo-asgard.svg" alt="ASGard"/></div>
-    <div class="hdr-right">
-      <div class="sec">Раздел 04 · Что входит&nbsp;в&nbsp;тариф</div>
-      <div class="page-no">Стр 5 / 7</div>
-    </div>
+  <div class="hdr minimal">
+    <div class="sec-left">Раздел 04 · Что входит&nbsp;в&nbsp;тариф</div>
+    <div class="pg">Стр 5 / 7</div>
   </div>
 
   <div class="body">
-    <span class="eyebrow">Сервис «под ключ»</span>
     <h2>Что входит в&nbsp;тариф 3,5&nbsp;₽/кВт·ч</h2>
     <div class="accent-line"></div>
     <p class="muted" style="max-width:230mm">
@@ -1080,16 +1084,12 @@
 
 <!-- ============================ PAGE 6 · TECH SPECS ============================ -->
 <section class="page spec">
-  <div class="hdr">
-    <div class="logo"><img src="assets/logo-asgard.svg" alt="ASGard"/></div>
-    <div class="hdr-right">
-      <div class="sec">Раздел 05 · Характеристики</div>
-      <div class="page-no">Стр 6 / 7</div>
-    </div>
+  <div class="hdr minimal">
+    <div class="sec-left">Раздел 05 · Характеристики</div>
+    <div class="pg">Стр 6 / 7</div>
   </div>
 
   <div class="body">
-    <span class="eyebrow">Газопоршневая установка</span>
     <h2>Технические характеристики Weichai · Baudouin&nbsp;6m33</h2>
     <div class="accent-line"></div>
 
@@ -1182,7 +1182,6 @@
   </div>
 
   <div class="body">
-    <span class="eyebrow">Спецоффер · условия</span>
     <h2>Условия и&nbsp;контакты</h2>
     <div class="accent-line"></div>
 
