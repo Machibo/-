@@ -4,11 +4,21 @@
 
 ## Файлы
 
-- `ASGard_KP_Datacenter_Gas.pdf` — **готовый PDF на 7 страниц** (A4 landscape).
-- `kp.html` — исходник вёрстки (HTML + CSS). Можно редактировать тексты/цифры и перерендерить.
+### Полная версия (7 страниц)
+- `ASGard_KP_Datacenter_Gas.pdf` — **готовый PDF на 7 страниц** (A4 landscape) для подробной презентации.
+- `kp.html` — исходник вёрстки полной версии.
+
+### Краткая версия (1 страница)
+- `ASGard_KP_Short.pdf` — **компактный PDF на 1 страницу** (A4 landscape) для быстрой рассылки в почте/мессенджерах.
+- `kp-short.html` — исходник вёрстки краткой версии.
+
+### Ассеты и референсы
 - `assets/logo-asgard.svg` — фирменный логотип в SVG (масштабируется без потерь).
-- `assets/logo-asgard.jpg` — растровая версия логотипа (извлечена из существующего КП).
-- `assets/bg-pattern.jpg` — фирменный волнистый зелёный паттерн (из существующего КП).
+- `assets/logo-asgard.jpg` — растровая версия логотипа.
+- `assets/weichai-side.jpg` — фото установки сбоку (для стр. 6 полной версии).
+- `assets/weichai-3q.jpg` — фото 3/4 спереди (для стр. 4 полной и для краткой).
+- `assets/weichai-front.jpg` — резервное фото.
+- `assets/bg-pattern.jpg` — фирменный волнистый зелёный паттерн.
 - `refs/` — изученные референсы (Promminer, DC Mining, существующее КП ASGard).
 
 ## Структура КП (7 страниц)
@@ -31,13 +41,22 @@
 
 ## Как пересобрать PDF из HTML
 
+Полная версия:
 ```bash
 cd kp/datacenter-gas
-
 google-chrome --headless=new --disable-gpu --no-sandbox \
   --no-pdf-header-footer --no-margins \
   --print-to-pdf=ASGard_KP_Datacenter_Gas.pdf \
   "file://$PWD/kp.html"
+```
+
+Краткая версия:
+```bash
+cd kp/datacenter-gas
+google-chrome --headless=new --disable-gpu --no-sandbox \
+  --no-pdf-header-footer --no-margins \
+  --print-to-pdf=ASGard_KP_Short.pdf \
+  "file://$PWD/kp-short.html"
 ```
 
 Для просмотра отдельных страниц как PNG:
