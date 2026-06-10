@@ -1,22 +1,23 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 200" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 220" fill="none">
   <defs>
     <linearGradient id="boltGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#5A5A5A"/>
+      <stop offset="0%" stop-color="#6F6F6F"/>
       <stop offset="100%" stop-color="#A8A8A8"/>
     </linearGradient>
     <linearGradient id="textGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#1F7A3D"/>
+      <stop offset="0%" stop-color="#3FB35A"/>
       <stop offset="55%" stop-color="#2BA84A"/>
-      <stop offset="100%" stop-color="#4CB85F"/>
+      <stop offset="100%" stop-color="#1F7A3D"/>
     </linearGradient>
   </defs>
   <!-- Lightning bolt -->
   <path d="M 80 10 L 35 105 L 70 105 L 50 175 L 130 75 L 90 75 L 130 10 Z"
         fill="url(#boltGrad)"/>
-  <!-- ASGard text -->
-  <text x="170" y="125" font-family="'Montserrat','Inter','Helvetica Neue',Arial,sans-serif"
-        font-weight="900" font-size="135" letter-spacing="-2" fill="url(#textGrad)">ASGard</text>
-  <!-- Subtitle -->
-  <text x="172" y="170" font-family="'Montserrat','Inter','Helvetica Neue',Arial,sans-serif"
-        font-weight="700" font-size="32" letter-spacing="0.5" fill="#0E2E1E">Mining Solutions</text>
+  <!-- ASGard wordmark -->
+  <text x="170" y="135" font-family="'Montserrat','Inter','Helvetica Neue',Arial,sans-serif"
+        font-weight="900" font-size="150" letter-spacing="-2" fill="url(#textGrad)">ASGard</text>
+  <!-- Technology label, right-aligned under wordmark -->
+  <text x="743" y="200" text-anchor="end"
+        font-family="'Montserrat','Inter','Helvetica Neue',Arial,sans-serif"
+        font-weight="800" font-size="48" letter-spacing="1" fill="#0E2E1E">Technology</text>
 </svg>

@@ -29,8 +29,8 @@
     --radius-sm:8px;
 
     --shadow-card: 0 1px 2px rgba(15,46,30,.04), 0 4px 12px rgba(15,46,30,.05);
-    --shadow-cta:  0 12px 28px rgba(31,122,61,.22);
-    --shadow-dark: 0 14px 30px rgba(8,34,26,.28);
+    --shadow-cta:  none;
+    --shadow-dark: none;
   }
 
   @page { size: 297mm 210mm; margin: 0; }
@@ -46,16 +46,16 @@
 
   /* HEADER */
   .hdr{
-    height:16mm;padding:7mm 14mm 0 14mm;
-    display:flex;align-items:center;justify-content:space-between;flex:0 0 auto;
+    height:22mm;padding:9mm 14mm 0 14mm;
+    display:flex;align-items:flex-start;justify-content:space-between;flex:0 0 auto;
   }
-  .hdr .logo{height:11mm;display:flex;align-items:center;}
-  .hdr .logo img{height:100%;width:auto;}
+  .hdr .logo{height:14mm;display:flex;align-items:center;}
+  .hdr .logo img{height:100%;width:auto;display:block;}
   .hdr .meta{font-size:10px;color:var(--grey-500);text-align:right;line-height:1.5;}
   .hdr .meta .sec{font-weight:700;color:var(--green-700);letter-spacing:.1em;text-transform:uppercase;font-size:9px;}
 
   /* BODY */
-  .body{flex:1 1 auto;padding:0 14mm 6mm 14mm;display:flex;flex-direction:column;gap:6mm;min-height:0;}
+  .body{flex:1 1 auto;padding:4mm 14mm 6mm 14mm;display:flex;flex-direction:column;gap:6mm;min-height:0;}
 
   /* MAIN ROW */
   .main{
@@ -112,16 +112,6 @@
     background:var(--grad-dark);color:#fff;border-radius:var(--radius-lg);
     padding:18px 22px;display:flex;flex-direction:column;
     box-shadow:var(--shadow-dark);position:relative;overflow:hidden;
-  }
-  .right::before{
-    content:"";position:absolute;top:-30mm;right:-25mm;width:100mm;height:100mm;
-    background:radial-gradient(circle,#4CB85F33 0%,transparent 60%);
-    border-radius:50%;pointer-events:none;
-  }
-  .right::after{
-    content:"";position:absolute;bottom:-40mm;left:-30mm;width:110mm;height:110mm;
-    background:radial-gradient(circle,#2BA84A26 0%,transparent 65%);
-    border-radius:50%;pointer-events:none;
   }
   .right > *{position:relative;z-index:1;}
   .right .tag{
@@ -192,10 +182,6 @@
     background:var(--grad-cta);color:#fff;border:none;
     box-shadow:var(--shadow-cta);position:relative;overflow:hidden;
     padding:13px 16px;
-  }
-  .bottom .cta::after{
-    content:"";position:absolute;right:-20mm;top:-15mm;width:60mm;height:60mm;
-    background:radial-gradient(circle,#FFFFFF26 0%,transparent 70%);border-radius:50%;
   }
   .bottom .cta > *{position:relative;z-index:1;}
   .bottom .cta .h{color:#D2F0D9;}

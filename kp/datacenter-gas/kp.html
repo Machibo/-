@@ -64,12 +64,12 @@
      HEADER / FOOTER
      ============================================================ */
   .hdr{
-    height:18mm;padding:7mm 14mm 0 14mm;
-    display:flex;align-items:center;justify-content:space-between;
+    height:24mm;padding:9mm 14mm 0 14mm;
+    display:flex;align-items:flex-start;justify-content:space-between;
     flex:0 0 auto;
   }
-  .hdr .logo{height:11mm;display:flex;align-items:center;gap:6px;}
-  .hdr .logo img{height:100%;width:auto;}
+  .hdr .logo{height:15mm;display:flex;align-items:center;gap:6px;}
+  .hdr .logo img{height:100%;width:auto;display:block;}
   .hdr .hdr-right{
     font-size:9px;color:var(--grey-500);text-align:right;letter-spacing:.06em;
     text-transform:uppercase;line-height:1.5;
@@ -106,6 +106,8 @@
   .body{
     flex:1 1 auto;padding:0 14mm;display:flex;flex-direction:column;min-height:0;
   }
+  /* extra breathing room on pages with full logo header (cover and last page) */
+  .terms .body{padding-top:5mm;}
 
   /* ============================================================
      TYPOGRAPHY
