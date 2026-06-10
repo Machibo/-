@@ -529,15 +529,17 @@
      PAGE 6 · TECH SPECS
      =================================================================== */
   .spec .hero-row{
-    display:grid;grid-template-columns:1.15fr 1fr;gap:12px;margin-top:6mm;align-items:stretch;
+    display:grid;grid-template-columns:1.05fr 1fr;gap:12px;margin-top:6mm;align-items:stretch;
+    height:52mm;flex:0 0 auto;
   }
   .spec .photo{
     border-radius:var(--radius-md);overflow:hidden;position:relative;
     background:#0E2E1E;box-shadow:var(--shadow-card);
-    min-height:48mm;
+    height:100%;width:100%;
   }
   .spec .photo img{
     width:100%;height:100%;object-fit:cover;display:block;
+    object-position:center 40%;
   }
   .spec .photo .photo-cap{
     position:absolute;left:14px;bottom:12px;
