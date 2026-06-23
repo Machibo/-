@@ -119,20 +119,21 @@
     background:#E3A613;color:#3A2A00;font-weight:800;font-size:10px;letter-spacing:.08em;
     text-transform:uppercase;align-self:flex-start;
   }
-  .right .lbl{
-    margin-top:14px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;
-    color:#B7D6BF;font-weight:700;
-  }
-  .right .price{margin-top:6px;display:flex;align-items:baseline;gap:8px;}
-  .right .price .v{
-    font-size:78px;font-weight:900;letter-spacing:-.04em;line-height:.95;color:#fff;
-  }
-  .right .price .u{font-size:14px;font-weight:800;color:#B7E1BE;}
   .right .price-sub{
-    font-size:12px;color:#D2F0D9;margin-top:8px;line-height:1.5;
+    font-size:11.5px;color:#D2F0D9;margin-top:12px;line-height:1.5;
   }
   .right .price-sub b{color:#fff;}
   .right .divider{height:1px;background:rgba(255,255,255,.14);margin:14px 0 12px 0;}
+  /* Dual-tier tariff row */
+  .right .tier-row{display:flex;gap:10px;margin-top:14px;}
+  .right .tier{
+    flex:1;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);
+    border-radius:var(--radius-sm);padding:12px 14px;
+  }
+  .right .tier-lbl{font-size:10px;letter-spacing:.1em;color:#B7D6BF;text-transform:uppercase;font-weight:700;}
+  .right .tier-v{font-size:36px;font-weight:900;color:#fff;letter-spacing:-.025em;line-height:1;margin-top:4px;}
+  .right .tier-cur{font-size:20px;font-weight:800;}
+  .right .tier-u{font-size:10.5px;font-weight:700;color:#B7D6BF;margin-top:2px;}
 
   .right .mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
   .right .mini{
@@ -220,33 +221,32 @@
       <div class="left">
         <div>
           <span class="eyebrow">Дата-центр на собственной газогенерации</span>
-          <h1>Покупка ГПУ Weichai + размещение на&nbsp;<span class="accent">нашей&nbsp;площадке</span></h1>
+          <h1>Станция <span class="accent">ASG&nbsp;400</span> + размещение на&nbsp;нашей площадке</h1>
         </div>
 
         <div class="lead">
-          Объект ASGard во&nbsp;Владимирской&nbsp;области, подключённый к&nbsp;<b>магистральному газопроводу</b>
-          (природный газ&nbsp;ГОСТ — не скважинный, не попутный, не отбензиненный).
-          Минимальная и&nbsp;предсказуемая себестоимость энергии, фиксация тарифа на&nbsp;длительный срок.
+          Объект ASGard во&nbsp;Владимирской области · собственная земля · магистральный
+          газ&nbsp;ГОСТ. Минимальная и&nbsp;предсказуемая себестоимость электроэнергии.
         </div>
 
         <div class="photo">
-          <img src="assets/weichai-3q.jpg" alt="Weichai · Baudouin 6m33"
+          <img src="assets/weichai-3q.jpg" alt="Станция ASG 400"
                onerror="this.style.display='none';this.parentElement.classList.add('placeholder');this.parentElement.innerHTML='<div>📷 assets/weichai-3q.jpg</div>'"/>
-          <span class="cap"><span class="dot"></span>Weichai · Baudouin 6m33 · 400&nbsp;кВт</span>
+          <span class="cap"><span class="dot"></span>Станция ASG&nbsp;400 · 400&nbsp;кВт</span>
         </div>
 
         <div class="facts">
           <div class="f">
             <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8 7 6 10 6 14a6 6 0 0 0 12 0c0-4-2-7-6-12z"/></svg></div>
-            <div class="t"><b>Магистральный газ ГОСТ</b> — не скважинный, не попутный, не отбензиненный</div>
+            <div class="t"><b>Магистральный газ ГОСТ</b> — стабильный калорийный состав</div>
           </div>
           <div class="f">
             <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 9.5V21h14V9.5"/><path d="M9 21v-7h6v7"/></svg></div>
-            <div class="t"><b>Земля в&nbsp;собственности</b> — долгосрочное планирование без рисков аренды</div>
+            <div class="t"><b>Земля в&nbsp;собственности</b> — без рисков аренды</div>
           </div>
           <div class="f">
             <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6"/><path d="M12 22v-6"/><circle cx="12" cy="12" r="4"/><path d="M4 12H2"/><path d="M22 12h-2"/></svg></div>
-            <div class="t"><b>24&nbsp;МВт</b> планируемой мощности · спец-условия на&nbsp;первые <b>5&nbsp;МВт</b></div>
+            <div class="t"><b>24&nbsp;МВт</b> планируемой мощности площадки</div>
           </div>
           <div class="f">
             <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 22s7-7.5 7-12a7 7 0 0 0-14 0c0 4.5 7 12 7 12z"/></svg></div>
@@ -256,16 +256,24 @@
       </div>
 
       <div class="right">
-        <span class="tag"><span style="width:6px;height:6px;background:#3A2A00;border-radius:50%;display:inline-block"></span>Спецоффер · первые 5 МВт</span>
+        <span class="tag"><span style="width:6px;height:6px;background:#3A2A00;border-radius:50%;display:inline-block"></span>Тариф «под ключ»</span>
 
-        <div class="lbl">Тариф размещения «под ключ»</div>
-        <div class="price">
-          <div class="v">3,5</div>
-          <div class="u">₽/кВт·ч<br/>с НДС</div>
+        <div class="tier-row">
+          <div class="tier">
+            <div class="tier-lbl">до 1 МВт</div>
+            <div class="tier-v">3,75 <span class="tier-cur">₽</span></div>
+            <div class="tier-u">за кВт·ч с НДС</div>
+          </div>
+          <div class="tier">
+            <div class="tier-lbl">свыше 1 МВт</div>
+            <div class="tier-v">3,5 <span class="tier-cur">₽</span></div>
+            <div class="tier-u">за кВт·ч с НДС</div>
+          </div>
         </div>
+
         <div class="price-sub">
           Включает <b>газ</b>, <b>инженерный сервис</b>, <b>охрану 24/7</b>, <b>интернет</b>
-          и&nbsp;<b>плановое&nbsp;ТО</b>. Начисляется за&nbsp;фактически потреблённую электроэнергию.
+          и&nbsp;<b>плановое&nbsp;ТО</b>. За&nbsp;фактически потреблённую электроэнергию ASIC.
         </div>
 
         <div class="divider"></div>
@@ -273,7 +281,7 @@
         <div class="mini-grid">
           <div class="mini">
             <div class="v">9 млн<small>&nbsp;₽</small></div>
-            <div class="l">Стоимость 1&nbsp;ГПУ · с&nbsp;НДС</div>
+            <div class="l">Стоимость 1&nbsp;станции · с&nbsp;НДС</div>
           </div>
           <div class="mini">
             <div class="v">$ 30<small>&nbsp;/&nbsp;шт</small></div>
@@ -285,7 +293,7 @@
           </div>
           <div class="mini">
             <div class="v">400<small>&nbsp;кВт</small></div>
-            <div class="l">Номинал · Baudouin 6m33</div>
+            <div class="l">Номинал · ASG&nbsp;400</div>
           </div>
         </div>
 
@@ -320,20 +328,16 @@
       </div>
 
       <div class="card">
-        <div class="h">Ключевые условия</div>
-        <div class="line"><div class="kv"><span>Минимальный вход</span><b>1 станция · 320 кВт</b></div></div>
-        <div class="line"><div class="kv"><span>Масштабирование</span><b>кратно 1 станции</b></div></div>
-        <div class="line"><div class="kv"><span>Гарантия на ГПУ</span><b>12 мес или 8 000 м/ч</b></div></div>
-        <div class="line"><div class="kv"><span>Срок действия КП</span><b>14 календарных дней</b></div></div>
+        <div class="h">Условия сделки</div>
+        <div class="line"><div class="kv"><span>Стоимость 1 станции</span><b>9 млн&nbsp;₽ с&nbsp;НДС</b></div></div>
+        <div class="line"><div class="kv"><span>Установочный платёж</span><b>$ 30 / ASIC</b></div></div>
+        <div class="line"><div class="kv"><span>Срок поставки</span><b>по заявке</b></div></div>
+        <div class="line"><div class="kv"><span>Срок действия КП</span><b>14 кал. дней</b></div></div>
       </div>
 
       <div class="card cta">
-        <div class="h">Готовы обсудить детали</div>
-        <div class="t">Свяжитесь с&nbsp;нами для&nbsp;индивидуального расчёта под&nbsp;ваш парк ASIC</div>
-        <div class="s">
-          Полная версия КП с&nbsp;тех. характеристиками, форматами размещения и&nbsp;инфраструктурой —
-          высылаем по&nbsp;запросу.
-        </div>
+        <div class="h">Готовы обсудить</div>
+        <div class="t">Индивидуальный расчёт под&nbsp;ваш парк ASIC</div>
         <div class="links">
           <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg>+7&nbsp;800&nbsp;550-07-32</span>
           <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>info@asg-ard.ru</span>
