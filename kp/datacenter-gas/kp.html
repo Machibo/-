@@ -195,25 +195,16 @@
   }
 
   /* left side */
-  .cover .left{display:flex;flex-direction:column;gap:16px;padding-top:2mm;padding-bottom:2mm;}
-  .cover .left h1{font-size:50px;letter-spacing:-.028em;margin-top:2px;}
+  .cover .left{display:flex;flex-direction:column;gap:16px;padding-top:4mm;padding-bottom:2mm;}
+  .cover .left h1{font-size:58px;letter-spacing:-.028em;margin-top:2px;line-height:1.05;}
   .cover .left h1 .accent{color:var(--green-700);}
   .cover .left .lead{
-    margin-top:14px;font-size:13px;line-height:1.55;color:var(--grey-700);max-width:140mm;
+    margin-top:16px;font-size:14px;line-height:1.6;color:var(--grey-700);max-width:140mm;
   }
   .cover .left .lead b{color:var(--green-800);}
-  .cover .left .quick{
-    display:grid;grid-template-columns:repeat(2,1fr);gap:8px;max-width:140mm;
-  }
-  .cover .left .quick .qi{
-    background:var(--green-050);border:1px solid var(--green-100);border-radius:var(--radius-sm);
-    padding:9px 12px;
-  }
-  .cover .left .quick .qi .v{font-size:18px;font-weight:900;color:var(--green-700);line-height:1.1;letter-spacing:-.01em;}
-  .cover .left .quick .qi .l{font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--grey-700);margin-top:1px;}
   .cover .left .signature{
     display:flex;align-items:center;gap:10px;font-size:10px;color:var(--grey-500);
-    letter-spacing:.04em;
+    letter-spacing:.04em;margin-top:auto;
   }
   .cover .left .signature .pill{font-size:9.5px;}
 
@@ -234,19 +225,16 @@
     color:#B7D6BF;font-weight:700;
   }
   .cover .right .price{
-    margin-top:4px;display:flex;align-items:baseline;gap:8px;
+    margin-top:18px;display:flex;align-items:baseline;gap:10px;
   }
   .cover .right .price .v{
-    font-size:62px;font-weight:900;letter-spacing:-.04em;line-height:.95;color:#fff;
+    font-size:120px;font-weight:900;letter-spacing:-.04em;line-height:.92;color:#fff;
   }
   .cover .right .price .u{
-    font-size:14px;font-weight:800;color:#B7E1BE;letter-spacing:.02em;
+    font-size:20px;font-weight:800;color:#B7E1BE;letter-spacing:.02em;line-height:1.2;
   }
   .cover .right .price-sub{
-    font-size:12px;color:#D2F0D9;margin-top:14px;line-height:1.5;max-width:95%;
-  }
-  .cover .right .divider{
-    height:1px;background:rgba(255,255,255,.14);margin:14px 0;
+    font-size:14px;color:#D2F0D9;margin-top:18px;line-height:1.55;max-width:95%;
   }
   .cover .right .mini-grid{
     display:grid;grid-template-columns:1fr 1fr;gap:10px;
@@ -651,15 +639,9 @@
           <h1>Дата-центр<br/>на собственной <span class="accent">газогенерации</span></h1>
           <div class="lead">
             Покупка станции <b>ASG&nbsp;400</b> и&nbsp;размещение на&nbsp;площадке ASGard
-            во&nbsp;Владимирской области. Собственная земля, магистральный газ&nbsp;по&nbsp;ГОСТу.
+            во&nbsp;Владимирской области. Магистральный газ&nbsp;по&nbsp;ГОСТу,
+            собственная земля, инфраструктура «под&nbsp;ключ».
           </div>
-        </div>
-
-        <div class="quick">
-          <div class="qi"><div class="v">9 000 000 ₽</div><div class="l">1 станция ASG&nbsp;400 · с&nbsp;НДС</div></div>
-          <div class="qi"><div class="v">$ 30 / шт</div><div class="l">Установочный платёж за&nbsp;ASIC</div></div>
-          <div class="qi"><div class="v">24 МВт</div><div class="l">Общая мощность площадки</div></div>
-          <div class="qi"><div class="v">от 1 станции</div><div class="l">Масштабирование без&nbsp;лимита</div></div>
         </div>
 
         <div class="signature">
@@ -671,15 +653,6 @@
       <div class="right">
         <span class="tag"><span style="width:6px;height:6px;background:#3A2A00;border-radius:50%;display:inline-block"></span>Тариф размещения «под ключ»</span>
 
-        <div class="lbl" style="margin-top:14px">До 1 МВт мощности</div>
-        <div class="price">
-          <div class="v">3,75</div>
-          <div class="u">₽/кВт·ч<br/>с НДС</div>
-        </div>
-
-        <div class="divider"></div>
-
-        <div class="lbl">Свыше 1 МВт мощности</div>
         <div class="price">
           <div class="v">3,5</div>
           <div class="u">₽/кВт·ч<br/>с НДС</div>
