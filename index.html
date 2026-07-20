@@ -3,102 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Logo Viewer</title>
+  <title>Logo</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
+      margin: 0;
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       background: #f5f5f5;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     }
-    .card {
-      background: white;
-      border-radius: 16px;
-      padding: 40px 60px;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-      text-align: center;
-      max-width: 480px;
-      width: 90%;
-    }
-    .logo-wrap {
-      width: 220px;
-      height: 130px;
-      margin: 0 auto 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .logo-wrap img {
-      max-width: 220px;
-      max-height: 130px;
-      object-fit: contain;
-    }
-    .domain { color: #888; font-size: 14px; }
-    .source { color: #bbb; font-size: 11px; margin-top: 6px; }
-    .error { color: #e55; font-size: 15px; }
-    .spinner {
-      width: 32px; height: 32px;
-      border: 3px solid #eee;
-      border-top-color: #999;
-      border-radius: 50%;
-      animation: spin 0.7s linear infinite;
-      margin: 0 auto;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
+    img { max-width: 280px; max-height: 160px; object-fit: contain; }
+    .err { color: #c44; }
   </style>
 </head>
 <body>
-  <div class="card">
-    <div class="logo-wrap" id="logoWrap"><div class="spinner"></div></div>
-    <div class="domain" id="domainLabel"></div>
-    <div class="source" id="sourceLabel"></div>
-  </div>
-
+  <div id="root"></div>
   <script>
-    const BF_CLIENT = '1idF1Fj7KzTGO52xbKN';
-    const params = new URLSearchParams(window.location.search);
-    const domain = (params.get('d') || '').trim();
-
-    const wrap   = document.getElementById('logoWrap');
-    const label  = document.getElementById('domainLabel');
-    const source = document.getElementById('sourceLabel');
-
-    if (!domain) {
-      wrap.innerHTML = '<span class="error">Укажи домен: ?d=lenta.ru</span>';
+    const d = new URLSearchParams(location.search).get('d');
+    const root = document.getElementById('root');
+    if (!d) {
+      root.innerHTML = '<span class="err">?d=domain.com</span>';
     } else {
-      label.textContent = domain;
-
-      const sources = [
-        { url: `https://cdn.brandfetch.io/${domain}?c=${BF_CLIENT}`, name: 'Brandfetch' },
-        { url: `https://logos.hunter.io/${domain}`,                   name: 'Hunter' },
-        { url: `https://logo.debounce.com/${domain}`,                 name: 'DeBounce' },
-      ];
-
-      let idx = 0;
-
-      function tryNext() {
-        if (idx >= sources.length) {
-          wrap.innerHTML = '<span class="error">Логотип не найден</span>';
-          source.textContent = '';
-          return;
-        }
-        const s = sources[idx++];
-        const img = new Image();
-        img.onload = () => {
-          wrap.innerHTML = '';
-          wrap.appendChild(img);
-          source.textContent = s.name;
-        };
-        img.onerror = tryNext;
-        img.src = s.url;
-        img.alt = domain;
-        img.style.cssText = 'max-width:220px;max-height:130px;object-fit:contain';
-      }
-
-      tryNext();
+      const img = document.createElement('img');
+      img.src = `logos/${d}.webp`;
+      img.alt = d;
+      img.onerror = () => { root.innerHTML = '<span class="err">Логотип не найден</span>'; };
+      root.appendChild(img);
     }
   </script>
 </body>
