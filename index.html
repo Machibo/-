@@ -24,53 +24,81 @@
       width: 90%;
     }
     .logo-wrap {
-      width: 200px;
-      height: 120px;
-      margin: 0 auto 20px;
+      width: 220px;
+      height: 130px;
+      margin: 0 auto 16px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
     .logo-wrap img {
-      max-width: 200px;
-      max-height: 120px;
+      max-width: 220px;
+      max-height: 130px;
       object-fit: contain;
     }
-    .domain {
-      color: #888;
-      font-size: 14px;
-      margin-top: 8px;
+    .domain { color: #888; font-size: 14px; }
+    .source { color: #bbb; font-size: 11px; margin-top: 6px; }
+    .error { color: #e55; font-size: 15px; }
+    .spinner {
+      width: 32px; height: 32px;
+      border: 3px solid #eee;
+      border-top-color: #999;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      margin: 0 auto;
     }
-    .error {
-      color: #e55;
-      font-size: 15px;
-    }
+    @keyframes spin { to { transform: rotate(360deg); } }
   </style>
 </head>
 <body>
   <div class="card">
-    <div class="logo-wrap" id="logoWrap"></div>
+    <div class="logo-wrap" id="logoWrap"><div class="spinner"></div></div>
     <div class="domain" id="domainLabel"></div>
+    <div class="source" id="sourceLabel"></div>
   </div>
-  <script>
-    const CLIENT_ID = '1idF1Fj7KzTGO52xbKN';
-    const params = new URLSearchParams(window.location.search);
-    const domain = params.get('d') || '';
 
-    const wrap = document.getElementById('logoWrap');
-    const label = document.getElementById('domainLabel');
+  <script>
+    const BF_CLIENT = '1idF1Fj7KzTGO52xbKN';
+    const params = new URLSearchParams(window.location.search);
+    const domain = (params.get('d') || '').trim();
+
+    const wrap   = document.getElementById('logoWrap');
+    const label  = document.getElementById('domainLabel');
+    const source = document.getElementById('sourceLabel');
 
     if (!domain) {
       wrap.innerHTML = '<span class="error">Укажи домен: ?d=lenta.ru</span>';
     } else {
       label.textContent = domain;
-      const img = document.createElement('img');
-      img.src = `https://cdn.brandfetch.io/${domain}?c=${CLIENT_ID}`;
-      img.alt = domain;
-      img.onerror = () => {
-        wrap.innerHTML = '<span class="error">Логотип не найден</span>';
-      };
-      wrap.appendChild(img);
+
+      const sources = [
+        { url: `https://cdn.brandfetch.io/${domain}?c=${BF_CLIENT}`, name: 'Brandfetch' },
+        { url: `https://logos.hunter.io/${domain}`,                   name: 'Hunter' },
+        { url: `https://logo.debounce.com/${domain}`,                 name: 'DeBounce' },
+      ];
+
+      let idx = 0;
+
+      function tryNext() {
+        if (idx >= sources.length) {
+          wrap.innerHTML = '<span class="error">Логотип не найден</span>';
+          source.textContent = '';
+          return;
+        }
+        const s = sources[idx++];
+        const img = new Image();
+        img.onload = () => {
+          wrap.innerHTML = '';
+          wrap.appendChild(img);
+          source.textContent = s.name;
+        };
+        img.onerror = tryNext;
+        img.src = s.url;
+        img.alt = domain;
+        img.style.cssText = 'max-width:220px;max-height:130px;object-fit:contain';
+      }
+
+      tryNext();
     }
   </script>
 </body>
