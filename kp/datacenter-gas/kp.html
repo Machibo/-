@@ -1,0 +1,1202 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<title>ASGard — Коммерческое предложение · Дата-центр на газогенерации</title>
+<style>
+  /* ============================================================
+     DESIGN TOKENS
+     ============================================================ */
+  :root{
+    --green-950:#08221A;
+    --green-900:#0E2E1E;
+    --green-800:#155A2D;
+    --green-700:#1F7A3D;
+    --green-600:#2BA84A;
+    --green-500:#4CB85F;
+    --green-400:#6FC95A;
+    --green-200:#B7E1BE;
+    --green-100:#E6F5E8;
+    --green-050:#F3FAF4;
+    --grey-900:#1A1F1B;
+    --grey-700:#3F4A42;
+    --grey-500:#5B6B5F;
+    --grey-300:#9BAA9F;
+    --grey-200:#C9D6CC;
+    --grey-100:#E6ECE7;
+    --border:#DCE6DE;
+    --border-strong:#C5D7C9;
+    --white:#FFFFFF;
+    --amber:#E3A613;
+    --amber-bg:#FFF6E0;
+
+    --grad-green: linear-gradient(180deg,#1F7A3D 0%, #2BA84A 55%, #4CB85F 100%);
+    --grad-cta: linear-gradient(135deg,#1F7A3D 0%,#2BA84A 60%,#4CB85F 100%);
+    --grad-soft: linear-gradient(180deg,#F3FAF4 0%, #E6F5E8 100%);
+    --grad-dark: linear-gradient(155deg,#08221A 0%, #0E2E1E 50%, #155A2D 100%);
+
+    --radius-lg:18px;
+    --radius-md:12px;
+    --radius-sm:8px;
+
+    --shadow-card: 0 1px 2px rgba(15,46,30,.04), 0 4px 12px rgba(15,46,30,.05);
+    --shadow-cta:  none;
+    --shadow-dark: none;
+  }
+
+  /* ============================================================
+     PAGE / RESET
+     ============================================================ */
+  @page { size: 297mm 210mm; margin: 0; }
+  *{box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  html,body{margin:0;padding:0;background:#E9EEEA;color:var(--green-900);
+    font-family:'Inter','Manrope','Helvetica Neue',Arial,sans-serif;
+    font-size:11px;line-height:1.4;-webkit-font-smoothing:antialiased;
+  }
+  .page{
+    width:297mm;height:210mm;position:relative;overflow:hidden;
+    background:var(--white);page-break-after:always;
+    display:flex;flex-direction:column;
+  }
+  .page:last-child{page-break-after:auto;}
+
+  /* ============================================================
+     HEADER / FOOTER
+     ============================================================ */
+  .hdr{
+    height:24mm;padding:9mm 14mm 0 14mm;
+    display:flex;align-items:flex-start;justify-content:space-between;
+    flex:0 0 auto;
+  }
+  .hdr .logo{height:15mm;display:flex;align-items:center;gap:6px;}
+  .hdr .logo img{height:100%;width:auto;display:block;}
+  .hdr .hdr-right{
+    font-size:9px;color:var(--grey-500);text-align:right;letter-spacing:.06em;
+    text-transform:uppercase;line-height:1.5;
+  }
+  .hdr .hdr-right .sec{font-weight:700;color:var(--green-700);}
+  .hdr .hdr-right .page-no{margin-top:1px;color:var(--grey-300);}
+
+  /* Minimal header for inner pages (no logo) */
+  .hdr.minimal{
+    height:12mm;padding:7mm 14mm 0 14mm;
+    border-bottom:none;
+  }
+  .hdr.minimal .sec-left{
+    font-size:10px;font-weight:800;color:var(--green-700);
+    letter-spacing:.14em;text-transform:uppercase;
+    display:flex;align-items:center;gap:10px;
+  }
+  .hdr.minimal .sec-left::before{
+    content:"";width:14px;height:2px;background:var(--grad-green);border-radius:2px;
+  }
+  .hdr.minimal .pg{
+    font-size:9px;color:var(--grey-300);letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+  }
+
+  .ftr{
+    height:11mm;padding:0 14mm;
+    display:flex;align-items:center;justify-content:space-between;
+    border-top:1px solid var(--border);font-size:9px;color:var(--grey-500);
+    flex:0 0 auto;letter-spacing:.02em;
+  }
+  .ftr b{color:var(--green-800);}
+  .ftr .r{color:var(--grey-300);letter-spacing:.06em;}
+
+  .body{
+    flex:1 1 auto;padding:0 14mm;display:flex;flex-direction:column;min-height:0;
+  }
+  /* extra breathing room on pages with full logo header (cover and last page) */
+  .terms .body{padding-top:5mm;}
+
+  /* ============================================================
+     TYPOGRAPHY
+     ============================================================ */
+  h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.01em;color:var(--green-900);}
+  h1{font-size:46px;line-height:1.05;font-weight:900;letter-spacing:-.025em;}
+  h2{font-size:28px;line-height:1.1;font-weight:900;letter-spacing:-.018em;}
+  h3{font-size:15px;line-height:1.25;font-weight:800;letter-spacing:-.005em;}
+  h4{font-size:11px;line-height:1.2;font-weight:800;text-transform:uppercase;
+     letter-spacing:.1em;color:var(--green-700);}
+  p{margin:0;}
+  .muted{color:var(--grey-500);}
+  .mono{font-feature-settings:'tnum';font-variant-numeric:tabular-nums;}
+
+  .eyebrow{
+    display:inline-block;font-size:10px;font-weight:700;color:var(--green-700);
+    letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px;
+  }
+  .accent-line{
+    width:44px;height:3px;background:var(--grad-green);border-radius:3px;
+    margin:6px 0 12px 0;
+  }
+
+  /* ============================================================
+     COMMON COMPONENTS
+     ============================================================ */
+  .card{
+    background:var(--white);border:1px solid var(--border);border-radius:var(--radius-md);
+    padding:12px 14px;box-shadow:var(--shadow-card);
+  }
+  .card.soft{background:var(--grad-soft);border-color:#CFE6D5;}
+  .card.dark{
+    background:var(--grad-dark);border:none;color:#E8F5EC;box-shadow:var(--shadow-dark);
+  }
+  .card.dark h3, .card.dark h4{color:#fff;}
+  .card.dark .muted{color:#B7D6BF;}
+
+  .pill{
+    display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:999px;
+    background:var(--green-100);color:var(--green-800);font-weight:700;font-size:10px;
+    letter-spacing:.06em;
+  }
+  .pill .dot{width:6px;height:6px;border-radius:50%;background:currentColor;}
+  .pill.dark{background:rgba(255,255,255,.12);color:#E8F5EC;border:1px solid rgba(255,255,255,.18);}
+  .pill.amber{background:#E3A613;color:#3A2A00;font-weight:800;}
+
+  .badge{
+    display:inline-block;background:var(--grad-cta);color:#fff;
+    padding:4px 9px;border-radius:6px;font-weight:800;font-size:9px;
+    letter-spacing:.09em;text-transform:uppercase;
+  }
+
+  table{width:100%;border-collapse:separate;border-spacing:0;font-size:11px;}
+  th{
+    background:var(--grad-cta);color:#fff;padding:9px 12px;text-align:left;
+    font-weight:700;font-size:10px;letter-spacing:.05em;text-transform:uppercase;
+  }
+  th:first-child{border-top-left-radius:var(--radius-sm);}
+  th:last-child{border-top-right-radius:var(--radius-sm);}
+  td{padding:9px 12px;border-bottom:1px solid var(--border);background:#fff;}
+  td.num{text-align:right;font-feature-settings:'tnum';font-variant-numeric:tabular-nums;font-weight:700;color:var(--green-900);}
+  tr:last-child td{border-bottom:none;}
+  tr.total td{background:var(--green-050);font-weight:900;color:var(--green-800);font-size:12.5px;}
+
+  /* checklist (used on multiple pages) */
+  .chk-list{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;}
+  .chk-list li{display:flex;gap:9px;align-items:flex-start;font-size:11px;line-height:1.5;}
+  .chk-list li .chk{
+    flex-shrink:0;width:15px;height:15px;border-radius:50%;
+    background:var(--green-500);color:#fff;display:flex;align-items:center;justify-content:center;
+    font-size:9px;font-weight:900;margin-top:1px;
+  }
+  .chk-list.dark li .chk{background:#4CB85F;color:#0E2E1E;}
+
+  /* ===================================================================
+     PAGE 1 · COVER  (redesigned — split layout, no decorative waves)
+     =================================================================== */
+  .cover{
+    background:#fff;
+  }
+  .cover .body{padding:0 14mm;justify-content:flex-start;}
+  .cover .split{
+    display:grid;grid-template-columns:1.12fr 1fr;gap:14mm;
+    flex:1;align-items:stretch;padding-bottom:8mm;
+  }
+
+  /* left side */
+  .cover .left{display:flex;flex-direction:column;gap:16px;padding-top:4mm;padding-bottom:2mm;}
+  .cover .left h1{font-size:58px;letter-spacing:-.028em;margin-top:2px;line-height:1.05;}
+  .cover .left h1 .accent{color:var(--green-700);}
+  .cover .left .lead{
+    margin-top:16px;font-size:14px;line-height:1.6;color:var(--grey-700);max-width:140mm;
+  }
+  .cover .left .lead b{color:var(--green-800);}
+  .cover .left .signature{
+    display:flex;align-items:center;gap:10px;font-size:10px;color:var(--grey-500);
+    letter-spacing:.04em;margin-top:auto;
+  }
+  .cover .left .signature .pill{font-size:9.5px;}
+
+  /* right side — dark offer panel */
+  .cover .right{
+    background:var(--grad-dark);color:#fff;border-radius:var(--radius-lg);
+    padding:16mm 12mm 12mm 12mm;display:flex;flex-direction:column;
+    box-shadow:var(--shadow-dark);position:relative;overflow:hidden;
+  }
+  .cover .right > *{position:relative;z-index:1;}
+  .cover .right .tag{
+    display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;
+    background:#E3A613;color:#3A2A00;font-weight:800;font-size:10px;letter-spacing:.08em;
+    text-transform:uppercase;align-self:flex-start;
+  }
+  .cover .right .lbl{
+    margin-top:14px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:#B7D6BF;font-weight:700;
+  }
+  .cover .right .price{
+    margin-top:18px;display:flex;align-items:baseline;gap:10px;
+  }
+  .cover .right .price .v{
+    font-size:120px;font-weight:900;letter-spacing:-.04em;line-height:.92;color:#fff;
+  }
+  .cover .right .price .u{
+    font-size:20px;font-weight:800;color:#B7E1BE;letter-spacing:.02em;line-height:1.2;
+  }
+  .cover .right .price-sub{
+    font-size:14px;color:#D2F0D9;margin-top:18px;line-height:1.55;max-width:95%;
+  }
+  .cover .right .mini-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:10px;
+  }
+  .cover .right .mini{
+    border:1px solid rgba(255,255,255,.14);border-radius:var(--radius-sm);
+    padding:11px 13px;
+  }
+  .cover .right .mini .v{
+    font-size:22px;font-weight:900;color:#fff;line-height:1.05;letter-spacing:-.015em;
+  }
+  .cover .right .mini .v small{font-size:13px;font-weight:800;color:#B7E1BE;margin-left:3px;}
+  .cover .right .mini .l{
+    font-size:9.5px;color:#B7D6BF;letter-spacing:.06em;text-transform:uppercase;font-weight:700;margin-top:3px;
+  }
+  .cover .right .loc{
+    margin-top:auto;display:flex;align-items:center;gap:10px;
+    padding-top:14px;font-size:11px;color:#D2F0D9;
+  }
+  .cover .right .loc svg{width:14px;height:14px;flex-shrink:0;}
+  .cover .right .loc b{color:#fff;font-weight:800;letter-spacing:.02em;}
+
+  /* bottom strip — included */
+  .cover .strip{
+    display:flex;align-items:center;justify-content:space-between;gap:14px;
+    border-top:1px solid var(--border);padding:7mm 0 0 0;margin-top:auto;
+  }
+  .cover .strip .l{
+    font-size:9.5px;color:var(--grey-500);letter-spacing:.12em;text-transform:uppercase;font-weight:700;
+  }
+  .cover .strip .items{
+    display:flex;gap:14px;flex-wrap:wrap;align-items:center;
+  }
+  .cover .strip .item{
+    display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--green-800);
+  }
+  .cover .strip .item .dot{
+    width:5px;height:5px;border-radius:50%;background:var(--green-600);
+  }
+
+  /* ===================================================================
+     PAGE 2 · LOCATION
+     =================================================================== */
+  .loc .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:12px;margin-top:6mm;flex:1;align-items:stretch;}
+  .loc .feat{display:flex;flex-direction:column;gap:9px;}
+  .loc .feat .card{display:flex;gap:12px;align-items:flex-start;padding:13px 15px;flex:1;}
+  .loc .feat .ico{
+    width:34px;height:34px;border-radius:10px;background:var(--green-100);
+    display:flex;align-items:center;justify-content:center;color:var(--green-700);
+    flex-shrink:0;
+  }
+  .loc .feat .ico svg{width:18px;height:18px;}
+  .loc .feat h3{font-size:13.5px;margin-bottom:3px;}
+  .loc .feat .desc{font-size:10.5px;color:var(--grey-700);line-height:1.5;}
+  .loc .feat .desc b{color:var(--green-800);}
+
+  .loc .right-col{display:flex;flex-direction:column;gap:10px;}
+  .loc .map{
+    border-radius:var(--radius-md);overflow:hidden;position:relative;
+    background:var(--grad-dark);color:#fff;
+    padding:16px 18px;box-shadow:var(--shadow-dark);
+    display:flex;flex-direction:column;gap:10px;flex:0 0 auto;
+  }
+  .loc .map > *{position:relative;z-index:1;}
+  .loc .map .row1{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+  .loc .map .where{font-size:18px;font-weight:900;letter-spacing:-.01em;}
+  .loc .map .dist{font-size:11px;color:#D2F0D9;margin-top:2px;}
+  .loc .map .stats-inline{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:8px;
+  }
+  .loc .map .stats-inline .si{
+    border:1px solid rgba(255,255,255,.16);border-radius:var(--radius-sm);padding:9px 11px;background:rgba(255,255,255,.04);
+  }
+  .loc .map .stats-inline .si .v{font-size:18px;font-weight:900;color:#fff;line-height:1.05;letter-spacing:-.01em;}
+  .loc .map .stats-inline .si .v small{font-size:11px;font-weight:800;color:#B7E1BE;margin-left:2px;}
+  .loc .map .stats-inline .si .l{font-size:9px;color:#B7D6BF;letter-spacing:.06em;text-transform:uppercase;font-weight:700;margin-top:2px;}
+
+  .loc .why-card{
+    padding:14px 16px;display:flex;flex-direction:column;gap:8px;flex:1;
+  }
+  .loc .why-card h3{font-size:14px;color:#fff;}
+
+  /* ===================================================================
+     PAGE 3 · FORMATS
+     =================================================================== */
+  .fmt .opts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6mm;flex:1;align-items:stretch;}
+  .fmt .opt{
+    border-radius:var(--radius-lg);padding:16px 18px;
+    display:flex;flex-direction:column;gap:8px;position:relative;
+  }
+  .fmt .opt.a{background:#fff;border:2px solid var(--green-500);box-shadow:var(--shadow-card);}
+  .fmt .opt.b{background:var(--grad-dark);color:#E8F5EC;border:none;box-shadow:var(--shadow-dark);}
+  .fmt .opt .eyebrow{margin-bottom:2px;}
+  .fmt .opt.b .eyebrow{color:#6FC95A;}
+  .fmt .opt h2{font-size:22px;letter-spacing:-.015em;line-height:1.15;}
+  .fmt .opt.b h2{color:#fff;}
+  .fmt .opt .price-row{
+    display:flex;align-items:baseline;gap:10px;margin:4px 0 6px 0;
+    padding:8px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  }
+  .fmt .opt.b .price-row{border-color:rgba(255,255,255,.14);}
+  .fmt .opt .price-row .num{font-size:32px;font-weight:900;color:var(--green-700);letter-spacing:-.02em;line-height:1;}
+  .fmt .opt.b .price-row .num{color:#4CB85F;}
+  .fmt .opt .price-row .unit{font-size:11.5px;font-weight:700;color:var(--grey-700);line-height:1.3;}
+  .fmt .opt.b .price-row .unit{color:#B7D6BF;}
+  .fmt .opt ul.chk-list{margin-top:2px;}
+  .fmt .opt .tag{
+    position:absolute;top:14px;right:14px;font-size:9px;font-weight:800;
+    letter-spacing:.09em;text-transform:uppercase;padding:4px 10px;border-radius:999px;
+  }
+  .fmt .opt.a .tag{background:var(--green-100);color:var(--green-800);}
+  .fmt .opt.b .tag{background:#4CB85F;color:#0E2E1E;}
+
+  .fmt .summary{
+    margin-top:10px;padding:12px 16px;border-radius:var(--radius-md);
+    background:var(--grad-soft);border:1px dashed #B7D6BF;
+    display:flex;justify-content:space-between;gap:14px;align-items:center;
+  }
+  .fmt .summary .l{font-size:11px;color:var(--grey-700);line-height:1.5;max-width:75%;}
+  .fmt .summary .l b{color:var(--green-800);}
+
+  /* ===================================================================
+     PAGE 4 · COST
+     =================================================================== */
+  .cost .grid{display:grid;grid-template-columns:1.55fr 1fr;gap:12px;margin-top:6mm;flex:1;align-items:stretch;}
+  .cost .left-col{display:flex;flex-direction:column;gap:11px;}
+  .cost .col-title{
+    font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--green-700);margin-bottom:6px;
+  }
+
+  .cost .cta{
+    background:var(--grad-cta);color:#fff;border-radius:var(--radius-md);
+    padding:18px 22px;display:flex;align-items:center;justify-content:space-between;
+    box-shadow:var(--shadow-cta);position:relative;overflow:hidden;
+  }
+  .cost .cta .l{position:relative;z-index:1;}
+  .cost .cta .l .lbl{font-size:10px;letter-spacing:.14em;color:#D2F0D9;text-transform:uppercase;font-weight:700;}
+  .cost .cta .l .t{font-size:16px;font-weight:800;margin-top:4px;line-height:1.25;}
+  .cost .cta .price{position:relative;z-index:1;text-align:right;}
+  .cost .cta .price .v{font-size:46px;font-weight:900;letter-spacing:-.025em;line-height:1;}
+  .cost .cta .price .u{font-size:12.5px;font-weight:700;color:#D2F0D9;margin-top:2px;}
+  /* Dual-tier tariff card on page 4 */
+  .cost .cta.tariff-duo{display:flex;align-items:stretch;justify-content:space-between;gap:18px;padding:16px 22px;}
+  .cost .cta.tariff-duo .tariff-tier{flex:1;text-align:left;}
+  .cost .cta.tariff-duo .tariff-tier .lbl{font-size:10px;letter-spacing:.12em;color:#D2F0D9;text-transform:uppercase;font-weight:700;}
+  .cost .cta.tariff-duo .tariff-tier .v{font-size:42px;font-weight:900;letter-spacing:-.025em;line-height:1;margin-top:6px;}
+  .cost .cta.tariff-duo .tariff-tier .v .cur{font-size:22px;font-weight:800;}
+  .cost .cta.tariff-duo .tariff-tier .u{font-size:11px;font-weight:700;color:#D2F0D9;margin-top:3px;letter-spacing:.02em;}
+  .cost .cta.tariff-duo .tariff-divider{width:1px;background:rgba(255,255,255,.22);align-self:stretch;}
+
+  .cost .note{
+    background:var(--green-050);border:1px solid #CFE6D5;border-left:3px solid var(--green-600);
+    border-radius:var(--radius-sm);padding:10px 14px;font-size:10.5px;color:var(--grey-700);line-height:1.55;
+  }
+  .cost .note b{color:var(--green-800);}
+
+  /* right column — 2 strong cards */
+  .cost .right-col{display:flex;flex-direction:column;gap:11px;}
+  .cost .snap{
+    background:#fff;border:1px solid var(--border);border-radius:var(--radius-md);
+    box-shadow:var(--shadow-card);
+    display:flex;flex-direction:column;flex:0 0 auto;overflow:hidden;
+  }
+  .cost .snap .snap-photo{
+    width:100%;aspect-ratio:16/9;background:#0E2E1E;position:relative;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .cost .snap .snap-photo img{
+    width:100%;height:100%;object-fit:cover;display:block;
+  }
+  .cost .snap .snap-photo.placeholder{
+    background:var(--grad-dark);color:#B7D6BF;
+    font-size:10px;text-align:center;padding:14px;line-height:1.5;
+  }
+  .cost .snap .snap-photo .snap-cap{
+    position:absolute;left:10px;bottom:8px;
+    display:inline-flex;align-items:center;gap:6px;
+    padding:4px 10px;border-radius:999px;
+    background:rgba(8,34,26,.85);color:#E8F5EC;
+    font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  }
+  .cost .snap .snap-photo .snap-cap .dot{width:5px;height:5px;border-radius:50%;background:#4CB85F;}
+  .cost .snap .snap-body{
+    padding:14px 16px;display:flex;flex-direction:column;gap:10px;
+  }
+  .cost .snap h4{margin-bottom:2px;}
+  .cost .snap .duo{
+    display:grid;grid-template-columns:1fr 1fr;gap:8px;
+  }
+  .cost .snap .duo .item{
+    background:var(--green-050);border:1px solid var(--green-100);
+    border-radius:var(--radius-sm);padding:10px 12px;
+  }
+  .cost .snap .duo .item .v{font-size:22px;font-weight:900;color:var(--green-700);line-height:1.05;letter-spacing:-.015em;}
+  .cost .snap .duo .item .v small{font-size:12px;font-weight:800;color:var(--green-700);margin-left:2px;}
+  .cost .snap .duo .item .l{font-size:9.5px;color:var(--grey-700);letter-spacing:.06em;text-transform:uppercase;font-weight:700;margin-top:3px;}
+  .cost .snap .meta-row{
+    display:flex;justify-content:space-between;font-size:10.5px;color:var(--grey-700);
+    padding:6px 0;border-top:1px solid var(--border);
+  }
+  .cost .snap .meta-row:first-of-type{border-top:none;padding-top:2px;}
+  .cost .snap .meta-row b{color:var(--green-800);font-weight:800;}
+
+  .cost .roadmap{
+    background:var(--grad-dark);color:#fff;border-radius:var(--radius-md);
+    padding:16px 18px;box-shadow:var(--shadow-dark);position:relative;overflow:hidden;
+    display:flex;flex-direction:column;gap:10px;flex:0 0 auto;
+  }
+  .cost .roadmap > *{position:relative;z-index:1;}
+  .cost .roadmap h4{color:#fff;font-size:11px;}
+  .cost .roadmap .steps{display:flex;flex-direction:column;gap:7px;}
+  .cost .roadmap .step{display:flex;align-items:center;gap:11px;font-size:10.5px;color:#E8F5EC;line-height:1.4;}
+  .cost .roadmap .step .n{
+    width:22px;height:22px;border-radius:50%;background:#4CB85F;color:#0E2E1E;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+    font-weight:900;font-size:10.5px;
+  }
+  .cost .roadmap .step .t{color:#E8F5EC;}
+
+  /* ===================================================================
+     PAGE 5 · INCLUDED
+     =================================================================== */
+  .incl .hero{
+    display:grid;grid-template-columns:1.4fr 1fr;gap:12px;margin-top:6mm;flex:1;align-items:stretch;
+  }
+  .incl .feat-grid{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:9px;
+  }
+  .incl .feat-grid .card{display:flex;gap:11px;padding:12px 14px;align-items:flex-start;}
+  .incl .feat-grid .ico{
+    width:36px;height:36px;border-radius:10px;background:var(--green-100);color:var(--green-700);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .incl .feat-grid .ico svg{width:20px;height:20px;}
+  .incl .feat-grid h3{font-size:13px;margin-bottom:2px;}
+  .incl .feat-grid .desc{font-size:10.5px;color:var(--grey-700);line-height:1.5;}
+
+  .incl .left{display:flex;flex-direction:column;gap:10px;}
+  .incl .exc{
+    background:#FFF6E0;border:1px solid #F2D98C;border-left:3px solid var(--amber);
+    border-radius:var(--radius-sm);padding:10px 14px;font-size:10.5px;color:#5C4500;line-height:1.55;
+  }
+  .incl .exc b{color:#7A5800;}
+
+  .incl .tariff-card{
+    background:var(--grad-cta);color:#fff;border-radius:var(--radius-md);
+    padding:18px 20px;display:flex;flex-direction:column;gap:8px;
+    box-shadow:var(--shadow-cta);position:relative;overflow:hidden;
+  }
+  .incl .tariff-card > *{position:relative;z-index:1;}
+  .incl .tariff-card .lbl{font-size:10px;letter-spacing:.14em;color:#D2F0D9;text-transform:uppercase;font-weight:700;}
+  .incl .tariff-card .price{display:flex;align-items:baseline;gap:6px;}
+  .incl .tariff-card .v{font-size:54px;font-weight:900;letter-spacing:-.03em;line-height:.95;}
+  .incl .tariff-card .u{font-size:13px;color:#D2F0D9;font-weight:800;}
+  .incl .tariff-card .ttl{font-size:13px;font-weight:800;margin-top:4px;color:#fff;line-height:1.35;}
+  /* Dual-tier price block inside tariff card */
+  .incl .tariff-card .tier-row{display:flex;flex-direction:column;gap:10px;margin-top:8px;}
+  .incl .tariff-card .tier{
+    background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);
+    border-radius:var(--radius-sm);padding:10px 14px;
+  }
+  .incl .tariff-card .tier-lbl{font-size:10px;letter-spacing:.1em;color:#D2F0D9;text-transform:uppercase;font-weight:700;}
+  .incl .tariff-card .tier-v{font-size:32px;font-weight:900;color:#fff;letter-spacing:-.02em;line-height:1;margin-top:3px;}
+  .incl .tariff-card .tier-cur{font-size:18px;font-weight:800;}
+  .incl .tariff-card .tier-u{font-size:10.5px;font-weight:700;color:#D2F0D9;margin-top:2px;}
+  .incl .tariff-card .divider{height:1px;background:rgba(255,255,255,.18);margin:8px 0 6px 0;}
+  .incl .tariff-card .foot{
+    margin-top:auto;padding-top:8px;font-size:10px;color:#D2F0D9;line-height:1.5;
+    border-top:1px solid rgba(255,255,255,.14);
+  }
+  .incl .tariff-card .foot b{color:#fff;}
+
+  /* ===================================================================
+     PAGE 6 · TECH SPECS
+     =================================================================== */
+  .spec .hero-row{
+    display:grid;grid-template-columns:1.05fr 1fr;gap:12px;margin-top:6mm;align-items:stretch;
+    height:52mm;flex:0 0 auto;
+  }
+  .spec .photo{
+    border-radius:var(--radius-md);overflow:hidden;position:relative;
+    background:#0E2E1E;box-shadow:var(--shadow-card);
+    height:100%;width:100%;
+  }
+  .spec .photo img{
+    width:100%;height:100%;object-fit:cover;display:block;
+    object-position:center 40%;
+  }
+  .spec .photo .photo-cap{
+    position:absolute;left:14px;bottom:12px;
+    display:inline-flex;align-items:center;gap:8px;
+    padding:6px 12px;border-radius:999px;
+    background:rgba(8,34,26,.85);color:#E8F5EC;
+    font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    backdrop-filter:blur(4px);
+  }
+  .spec .photo .photo-cap .dot{width:6px;height:6px;border-radius:50%;background:#4CB85F;}
+  .spec .photo.placeholder{
+    background:var(--grad-dark);color:#B7D6BF;
+    display:flex;align-items:center;justify-content:center;
+    text-align:center;padding:20px;font-size:10.5px;line-height:1.5;
+  }
+  .spec .hero-spec{
+    background:var(--grad-dark);color:#E8F5EC;border-radius:var(--radius-md);
+    padding:18px 20px;display:flex;flex-direction:column;justify-content:center;gap:8px;
+    box-shadow:var(--shadow-dark);position:relative;overflow:hidden;
+  }
+  .spec .hero-spec > *{position:relative;z-index:1;}
+  .spec .hero-spec .ttl{font-size:15px;font-weight:900;color:#fff;line-height:1.25;}
+  .spec .hero-spec .sub{font-size:10.5px;color:#B7D6BF;margin-top:2px;letter-spacing:.04em;line-height:1.5;}
+  .spec .hero-spec .vs{display:flex;gap:18px;margin-top:8px;}
+  .spec .hero-spec .vs .v{font-size:24px;font-weight:900;color:#4CB85F;letter-spacing:-.02em;line-height:1;}
+  .spec .hero-spec .vs .u{font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:#B7D6BF;margin-top:3px;font-weight:700;}
+
+  .spec .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px;flex:1;align-items:stretch;}
+  .spec .grid > .col{display:flex;flex-direction:column;gap:10px;}
+  .spec .block{
+    border:1px solid var(--border);border-radius:var(--radius-md);overflow:hidden;background:#fff;box-shadow:var(--shadow-card);
+  }
+  .spec .block .h{
+    background:var(--grad-cta);color:#fff;padding:8px 14px;font-size:10.5px;font-weight:800;
+    letter-spacing:.06em;text-transform:uppercase;
+  }
+  .spec .block table{font-size:10.5px;}
+  .spec .block td{padding:7px 14px;border-bottom:1px solid var(--border);}
+  .spec .block td:first-child{color:var(--grey-700);width:55%;}
+  .spec .block td:last-child{text-align:right;font-weight:700;color:var(--green-900);}
+  .spec .block tr:last-child td{border-bottom:none;}
+
+  /* ===================================================================
+     PAGE 7 · TERMS / CONTACTS
+     =================================================================== */
+  .terms .special{
+    margin-top:6mm;
+    background:var(--grad-cta);color:#fff;
+    border-radius:var(--radius-md);padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:14px;
+    box-shadow:var(--shadow-cta);position:relative;overflow:hidden;
+  }
+  .terms .special > *{position:relative;z-index:1;}
+  .terms .special .l .badge{background:#E3A613;color:#3A2A00;}
+  .terms .special h2{color:#fff;font-size:22px;margin-top:8px;letter-spacing:-.015em;line-height:1.2;}
+  .terms .special .desc{font-size:11px;color:#D2F0D9;margin-top:4px;max-width:170mm;line-height:1.5;}
+  .terms .special .right{text-align:right;}
+  .terms .special .right .v{font-size:46px;font-weight:900;letter-spacing:-.025em;line-height:1;}
+  .terms .special .right .u{font-size:11px;font-weight:700;color:#D2F0D9;margin-top:3px;}
+
+  .terms .row{display:grid;grid-template-columns:1.55fr 1fr;gap:12px;margin-top:12px;flex:1;align-items:stretch;}
+  .terms .conds{display:flex;flex-direction:column;}
+  .terms .conds .h{font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--green-700);margin-bottom:6px;}
+  .terms .conds .tbl{border:1px solid var(--border);border-radius:var(--radius-md);overflow:hidden;background:#fff;box-shadow:var(--shadow-card);}
+  .terms .conds .tbl table td{padding:8px 14px;font-size:11px;}
+  .terms .conds .tbl table td:first-child{color:var(--grey-700);width:55%;}
+  .terms .conds .tbl table td:last-child{text-align:right;font-weight:700;color:var(--green-900);}
+  .terms .legal{
+    margin-top:8px;font-size:8.5px;color:var(--grey-500);line-height:1.55;
+  }
+
+  .terms .contact{
+    background:#fff;border:1px solid var(--border);border-radius:var(--radius-md);
+    padding:16px 18px;display:flex;flex-direction:column;gap:10px;box-shadow:var(--shadow-card);
+  }
+  .terms .contact h3{font-size:14px;}
+  .terms .contact .who{
+    display:flex;flex-direction:column;gap:2px;padding:10px 12px;background:var(--green-050);border-radius:var(--radius-sm);
+  }
+  .terms .contact .who .role{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-500);font-weight:800;}
+  .terms .contact .who .name{font-size:14px;font-weight:800;color:var(--green-800);}
+  .terms .contact .who .reg{font-size:10px;color:var(--grey-500);margin-top:2px;}
+  .terms .contact .lines{display:flex;flex-direction:column;gap:6px;}
+  .terms .contact .lines .ln{display:flex;align-items:center;gap:10px;font-size:11px;color:var(--green-900);}
+  .terms .contact .lines .ln .ico{
+    width:22px;height:22px;border-radius:6px;background:var(--green-100);color:var(--green-700);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .terms .contact .lines .ln .ico svg{width:12px;height:12px;}
+  .terms .contact .cta-msg{
+    margin-top:auto;padding:10px 12px;background:var(--green-900);color:#fff;border-radius:var(--radius-sm);
+    font-size:10.5px;line-height:1.5;
+  }
+  .terms .contact .cta-msg b{color:#fff;}
+</style>
+</head>
+<body>
+
+<!-- ============================ PAGE 1 · COVER ============================ -->
+<section class="page cover">
+
+  <div class="hdr">
+    <div class="logo"><img src="assets/logo-asgard.svg" alt="ASGard"/></div>
+    <div class="hdr-right">
+      <div class="page-no" style="color:var(--grey-500);font-size:10px;letter-spacing:.06em;text-transform:none">от 10 июня 2026 г.</div>
+    </div>
+  </div>
+
+  <div class="body">
+
+    <div class="split">
+
+      <div class="left">
+        <div class="head">
+          <span class="eyebrow">Коммерческое предложение</span>
+          <h1>Дата-центр<br/>на собственной <span class="accent">газогенерации</span></h1>
+          <div class="lead">
+            Покупка станции <b>ASG&nbsp;400</b> и&nbsp;размещение на&nbsp;площадке ASGard
+            во&nbsp;Владимирской области. Магистральный газ&nbsp;по&nbsp;ГОСТу,
+            собственная земля, инфраструктура «под&nbsp;ключ».
+          </div>
+        </div>
+
+        <div class="signature">
+          <span class="pill"><span class="dot"></span>ООО «АСГАРД»</span>
+          <span>оператор майнинговой&nbsp;инфраструктуры&nbsp;· ИНН&nbsp;7722494464</span>
+        </div>
+      </div>
+
+      <div class="right">
+        <span class="tag"><span style="width:6px;height:6px;background:#3A2A00;border-radius:50%;display:inline-block"></span>Тариф размещения «под ключ»</span>
+
+        <div class="price">
+          <div class="v">3,5</div>
+          <div class="u">₽/кВт·ч<br/>с НДС</div>
+        </div>
+        <div class="price-sub">
+          Включает газ, сервис, охрану, интернет и&nbsp;плановое&nbsp;ТО.
+          Начисляется за&nbsp;фактически потреблённую электроэнергию&nbsp;ASIC.
+        </div>
+
+        <div class="loc">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-7.5 7-12a7 7 0 0 0-14 0c0 4.5 7 12 7 12z"/><circle cx="12" cy="10" r="2.6" fill="currentColor"/></svg>
+          <span><b>Владимирская область</b> &nbsp;·&nbsp; 60 км от&nbsp;г.&nbsp;Владимир</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================ PAGE 2 · LOCATION ============================ -->
+<section class="page loc">
+  <div class="hdr minimal">
+    <div class="sec-left">Раздел 01 · Площадка</div>
+    <div class="pg">Стр 2 / 7</div>
+  </div>
+
+  <div class="body">
+    <h2>Дата-центр ASGard во&nbsp;Владимирской&nbsp;области</h2>
+    <div class="accent-line"></div>
+    <p class="muted" style="max-width:230mm">
+      Собственная земля, магистральный газ&nbsp;по&nbsp;ГОСТу, инфраструктура «под ключ» —
+      минимальная и&nbsp;предсказуемая себестоимость электроэнергии.
+    </p>
+
+    <div class="grid">
+      <div class="feat">
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 9.5V21h14V9.5"/><path d="M9 21v-7h6v7"/></svg></div>
+          <div>
+            <h3>Земля в&nbsp;собственности</h3>
+            <div class="desc">Собственный участок ASGard. Долгосрочное планирование без рисков аренды.</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8 7 6 10 6 14a6 6 0 0 0 12 0c0-4-2-7-6-12z"/></svg></div>
+          <div>
+            <h3>Магистральный газ по&nbsp;ГОСТ</h3>
+            <div class="desc"><b>Не скважинный, не попутный, не отбензиненный.</b> Стабильный калорийный состав&nbsp;— ресурс ГПУ без сюрпризов.</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 22s7-7.5 7-12a7 7 0 0 0-14 0c0 4.5 7 12 7 12z"/></svg></div>
+          <div>
+            <h3>60 км от&nbsp;г.&nbsp;Владимир</h3>
+            <div class="desc">Удобная логистика. Близость к&nbsp;федеральным трассам и&nbsp;подъездным путям.</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <div>
+            <h3>Инфраструктура «под&nbsp;ключ»</h3>
+            <div class="desc">Газовый узел, фундаменты, охрана, интернет-канал, мониторинг&nbsp;24/7.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-col">
+        <div class="map">
+          <span class="pill dark" style="align-self:flex-start;"><span class="dot"></span>Владимирская обл.</span>
+          <div>
+            <div class="where">Площадка ASGard</div>
+            <div class="dist">~ 60 км от&nbsp;г.&nbsp;Владимир · собственная земля</div>
+          </div>
+          <div class="stats-inline">
+            <div class="si">
+              <div class="v">24<small>МВт</small></div>
+              <div class="l">Планируемая мощность</div>
+            </div>
+            <div class="si">
+              <div class="v">5<small>МВт</small></div>
+              <div class="l">Спец-условия на старте</div>
+            </div>
+            <div class="si">
+              <div class="v">24/7</div>
+              <div class="l">Сервис и&nbsp;мониторинг</div>
+            </div>
+            <div class="si">
+              <div class="v">100%</div>
+              <div class="l">Земля в&nbsp;собственности</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card dark why-card">
+          <h3>Почему магистральный газ&nbsp;— это&nbsp;важно</h3>
+          <ul class="chk-list dark" style="margin-top:2px;">
+            <li><span class="chk">✓</span><span>Стабильный калорийный состав → точные расчёты экономики</span></li>
+            <li><span class="chk">✓</span><span>Нет смол, конденсата и&nbsp;серы → меньший износ двигателя</span></li>
+            <li><span class="chk">✓</span><span>Договор на годы вперёд → фиксация себестоимости</span></li>
+            <li><span class="chk">✓</span><span>ГОСТ&nbsp;5542 → без сюрпризов в&nbsp;эксплуатации</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ftr">
+    <div><b>ООО «АСГАРД»</b> · оператор майнинговой инфраструктуры · ИНН&nbsp;7722494464</div>
+    <div class="r">asg-mining.ru</div>
+  </div>
+</section>
+
+<!-- ============================ PAGE 3 · FORMATS ============================ -->
+<section class="page fmt">
+  <div class="hdr minimal">
+    <div class="sec-left">Раздел 02 · Форматы</div>
+    <div class="pg">Стр 3 / 7</div>
+  </div>
+
+  <div class="body">
+    <h2>Как устроено участие в&nbsp;проекте</h2>
+    <div class="accent-line"></div>
+    <p class="muted" style="max-width:230mm">
+      Клиент покупает станцию <b>ASG&nbsp;400</b> и&nbsp;размещает её на&nbsp;площадке ASGard.
+      Тариф зависит от&nbsp;объёма законтрактованной мощности.
+    </p>
+
+    <div class="opts">
+      <div class="opt a">
+        <span class="tag">До 1 МВт</span>
+        <span class="eyebrow">Вариант A</span>
+        <h2>1–3 станции ASG&nbsp;400</h2>
+        <div class="price-row">
+          <div class="num">3,75</div>
+          <div class="unit">₽/кВт·ч с НДС<br/>тариф «под ключ»</div>
+        </div>
+        <ul class="chk-list">
+          <li><span class="chk">✓</span><span><b>ASG&nbsp;400</b> · 320&nbsp;кВт постоянной мощности на&nbsp;станцию</span></li>
+          <li><span class="chk">✓</span><span><b>Кожух</b> — предоставляется ASGard</span></li>
+          <li><span class="chk">✓</span><span><b>Контейнер и&nbsp;места под&nbsp;ASIC</b> — в&nbsp;аренду</span></li>
+          <li><span class="chk">✓</span><span>Установка, ПНР, подключение к&nbsp;инфраструктуре</span></li>
+        </ul>
+      </div>
+
+      <div class="opt b">
+        <span class="tag">Свыше 1 МВт</span>
+        <span class="eyebrow">Вариант B</span>
+        <h2>Промышленный парк от&nbsp;4&nbsp;станций</h2>
+        <div class="price-row">
+          <div class="num">3,5</div>
+          <div class="unit">₽/кВт·ч с НДС<br/>тариф «под ключ»</div>
+        </div>
+        <ul class="chk-list dark">
+          <li><span class="chk">✓</span><span><b>ASG&nbsp;400</b> · от&nbsp;4&nbsp;станций (≥ 1&nbsp;МВт постоянной)</span></li>
+          <li><span class="chk">✓</span><span>Собственный контейнер клиента на&nbsp;нашей площадке</span></li>
+          <li><span class="chk">✓</span><span>Магистральный газ и&nbsp;электрораспределение</span></li>
+          <li><span class="chk">✓</span><span>Полный сервис, охрана, мониторинг 24/7</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="summary">
+      <div class="l">
+        <b>Шаг масштабирования — 1 станция ASG&nbsp;400 (320 кВт).</b>
+        Общая планируемая мощность площадки&nbsp;— <b>24&nbsp;МВт</b>.
+      </div>
+      <span class="pill"><span class="dot"></span>Без верхнего лимита</span>
+    </div>
+  </div>
+
+  <div class="ftr">
+    <div><b>ООО «АСГАРД»</b> · оператор майнинговой инфраструктуры · ИНН&nbsp;7722494464</div>
+    <div class="r">asg-mining.ru</div>
+  </div>
+</section>
+
+<!-- ============================ PAGE 4 · COST ============================ -->
+<section class="page cost">
+  <div class="hdr minimal">
+    <div class="sec-left">Раздел 03 · Состав и&nbsp;стоимость</div>
+    <div class="pg">Стр 4 / 7</div>
+  </div>
+
+  <div class="body">
+    <h2>Состав и&nbsp;стоимость</h2>
+    <div class="accent-line"></div>
+    <p class="muted" style="max-width:230mm">
+      CAPEX&nbsp;— покупка станции ASG&nbsp;400 и&nbsp;установочный платёж за&nbsp;ASIC.
+      OPEX&nbsp;— единый тариф «под ключ» за&nbsp;фактически потреблённую электроэнергию.
+    </p>
+
+    <div class="grid">
+      <div class="left-col">
+        <div>
+          <div class="col-title">1 · Капитальные расходы (₽, с НДС)</div>
+          <table>
+            <thead>
+              <tr>
+                <th style="width:48%">Наименование</th>
+                <th style="width:14%">Кол-во</th>
+                <th style="width:18%">Цена за ед.</th>
+                <th style="width:20%">Стоимость</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>Станция ASG&nbsp;400</b><br/><span class="muted">400&nbsp;кВт номинал · 320&nbsp;кВт постоянная</span></td>
+                <td class="num">1 шт</td>
+                <td class="num">9 000 000 ₽</td>
+                <td class="num">9 000 000 ₽</td>
+              </tr>
+              <tr>
+                <td><b>Кожух станции</b><br/><span class="muted">Предоставляется ASGard в&nbsp;составе сделки</span></td>
+                <td class="num">1 шт</td>
+                <td class="num">включён</td>
+                <td class="num">—</td>
+              </tr>
+              <tr>
+                <td><b>Установочный платёж</b><br/><span class="muted">За&nbsp;каждый ASIC, по&nbsp;курсу&nbsp;ЦБ&nbsp;РФ</span></td>
+                <td class="num">за&nbsp;шт</td>
+                <td class="num">$ 30 / шт</td>
+                <td class="num">по&nbsp;факту</td>
+              </tr>
+              <tr class="total">
+                <td>Итого за 1 станцию ASG&nbsp;400</td>
+                <td class="num"></td>
+                <td class="num"></td>
+                <td class="num">9 000 000 ₽</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="cta tariff-duo">
+          <div class="tariff-tier">
+            <div class="lbl">Тариф · до 1 МВт</div>
+            <div class="v">3,75&nbsp;<span class="cur">₽</span></div>
+            <div class="u">за кВт·ч с НДС</div>
+          </div>
+          <div class="tariff-divider"></div>
+          <div class="tariff-tier">
+            <div class="lbl">Тариф · свыше 1 МВт</div>
+            <div class="v">3,5&nbsp;<span class="cur">₽</span></div>
+            <div class="u">за кВт·ч с НДС</div>
+          </div>
+        </div>
+
+        <div class="note">
+          <b>Базис расчёта.</b> Все цены — с&nbsp;НДС&nbsp;22%. Тариф начисляется за&nbsp;фактически потреблённую
+          электроэнергию ASIC. Установочный платёж — в&nbsp;₽ по&nbsp;курсу&nbsp;ЦБ&nbsp;РФ на&nbsp;дату счёта.
+        </div>
+      </div>
+
+      <div class="right-col">
+        <div class="snap">
+          <div class="snap-photo">
+            <img src="assets/weichai-3q.jpg" alt="Газопоршневая установка ASG 400"
+                 onerror="this.style.display='none';this.parentElement.classList.add('placeholder');this.parentElement.innerHTML='<div>📷 Фото установки<br/>загрузите файл&nbsp;<code style=&quot;color:#fff;font-family:monospace&quot;>assets/weichai-3q.jpg</code></div>'"/>
+            <span class="snap-cap"><span class="dot"></span>Станция ASG&nbsp;400</span>
+          </div>
+          <div class="snap-body">
+            <div>
+              <h4>Станция ASG&nbsp;400</h4>
+              <div class="duo" style="margin-top:6px">
+                <div class="item">
+                  <div class="v">400<small>&nbsp;кВт</small></div>
+                  <div class="l">Номинал</div>
+                </div>
+                <div class="item">
+                  <div class="v">320<small>&nbsp;кВт</small></div>
+                  <div class="l">Постоянная 24/7</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:0;margin-top:0">
+              <div class="meta-row"><span>Стоимость 1&nbsp;станции</span><b>9 000 000 ₽ с НДС</b></div>
+              <div class="meta-row"><span>Кожух</span><b>предоставляется ASGard</b></div>
+              <div class="meta-row"><span>Установочный платёж</span><b>30 $ / ASIC</b></div>
+              <div class="meta-row"><span>Шаг масштабирования</span><b>1 станция · 320&nbsp;кВт</b></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="ftr">
+    <div><b>ООО «АСГАРД»</b> · оператор майнинговой инфраструктуры · ИНН&nbsp;7722494464</div>
+    <div class="r">asg-mining.ru</div>
+  </div>
+</section>
+
+<!-- ============================ PAGE 5 · INCLUDED ============================ -->
+<section class="page incl">
+  <div class="hdr minimal">
+    <div class="sec-left">Раздел 04 · Что входит&nbsp;в&nbsp;тариф</div>
+    <div class="pg">Стр 5 / 7</div>
+  </div>
+
+  <div class="body">
+    <h2>Что входит в&nbsp;тариф «под ключ»</h2>
+    <div class="accent-line"></div>
+    <p class="muted" style="max-width:230mm">
+      Единый тариф закрывает OPEX&nbsp;— топливо, сервис, охрану, связь и&nbsp;плановое&nbsp;ТО.
+      Вы платите за&nbsp;кВт·ч и&nbsp;получаете готовый дата-центр.
+    </p>
+
+    <div class="hero">
+      <div class="left">
+        <div class="feat-grid">
+          <div class="card">
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8 7 6 10 6 14a6 6 0 0 0 12 0c0-4-2-7-6-12z"/></svg></div>
+            <div>
+              <h3>Топливо · природный газ ГОСТ</h3>
+              <div class="desc">Магистральный газ&nbsp;по&nbsp;ГОСТ&nbsp;5542. Без скважинных и&nbsp;попутных примесей.</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.7-3.7a6 6 0 0 1-7.9 7.9L8.3 18.3a2.4 2.4 0 1 1-3.4-3.4L11.4 8.5a6 6 0 0 1 7.9-7.9z"/></svg></div>
+            <div>
+              <h3>Инженерный сервис&nbsp;ГПУ</h3>
+              <div class="desc">Эксплуатация, мониторинг параметров и&nbsp;оперативное реагирование специалистов ASGard.</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-12V4l-8-2-8 2v6c0 8 8 12 8 12z"/></svg></div>
+            <div>
+              <h3>Охрана 24/7</h3>
+              <div class="desc">Круглосуточная физическая охрана, периметр, видеонаблюдение и&nbsp;контроль доступа.</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 0 20"/><path d="M12 2a15 15 0 0 0 0 20"/></svg></div>
+            <div>
+              <h3>Интернет-канал</h3>
+              <div class="desc">Выделенный интернет с&nbsp;резервированием для&nbsp;стабильной работы майнинг-парка и&nbsp;пулов.</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9c.21.59.74 1 1.51 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></div>
+            <div>
+              <h3>Плановое ТО</h3>
+              <div class="desc">Регламентные работы по&nbsp;моточасам: замена масла, фильтров, свечей, проверка систем ГПУ.</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 12l2 2 4-4"/></svg></div>
+            <div>
+              <h3>Готовая инфраструктура</h3>
+              <div class="desc">Газовый узел, фундаменты, электрораспределение, заземление, дренаж&nbsp;— готовы к&nbsp;запуску.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="exc">
+          <b>Что не входит в&nbsp;тариф:</b> капитальный ремонт ГПУ и&nbsp;расходные комплектующие сверх регламентных.
+          Стоимость капремонта рассчитывается отдельно по&nbsp;фактической наработке. Ресурс двигателя
+          до&nbsp;капремонта&nbsp;— <b>60&nbsp;000&nbsp;м/ч</b>.
+        </div>
+      </div>
+
+      <div class="tariff-card">
+        <div class="lbl">Тариф «под&nbsp;ключ»</div>
+
+        <div class="tier-row">
+          <div class="tier">
+            <div class="tier-lbl">до 1 МВт</div>
+            <div class="tier-v">3,75 <span class="tier-cur">₽</span></div>
+            <div class="tier-u">за кВт·ч с НДС</div>
+          </div>
+          <div class="tier">
+            <div class="tier-lbl">свыше 1 МВт</div>
+            <div class="tier-v">3,5 <span class="tier-cur">₽</span></div>
+            <div class="tier-u">за кВт·ч с НДС</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <ul class="chk-list dark">
+          <li><span class="chk">✓</span>Топливо — природный газ ГОСТ</li>
+          <li><span class="chk">✓</span>Эксплуатация и&nbsp;сервис ГПУ</li>
+          <li><span class="chk">✓</span>Охрана 24/7</li>
+          <li><span class="chk">✓</span>Интернет-канал</li>
+          <li><span class="chk">✓</span>Плановое ТО</li>
+          <li><span class="chk">✓</span>Готовая площадка и&nbsp;узлы</li>
+        </ul>
+
+        <div class="foot">
+          Начисляется за&nbsp;фактически потреблённую электроэнергию ASIC.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ftr">
+    <div><b>ООО «АСГАРД»</b> · оператор майнинговой инфраструктуры · ИНН&nbsp;7722494464</div>
+    <div class="r">asg-mining.ru</div>
+  </div>
+</section>
+
+<!-- ============================ PAGE 6 · TECH SPECS ============================ -->
+<section class="page spec">
+  <div class="hdr minimal">
+    <div class="sec-left">Раздел 05 · Характеристики</div>
+    <div class="pg">Стр 6 / 7</div>
+  </div>
+
+  <div class="body">
+    <h2>Технические характеристики · ASG&nbsp;400</h2>
+    <div class="accent-line"></div>
+
+    <div class="hero-row">
+      <div class="photo">
+        <img src="assets/weichai-side.jpg" alt="Газопоршневая установка ASG 400 — вид сбоку"
+             onerror="this.style.display='none';this.parentElement.classList.add('placeholder');this.parentElement.innerHTML='<div>📷 Фото установки<br/>загрузите файл&nbsp;<code style=&quot;color:#fff;font-family:monospace&quot;>assets/weichai-side.jpg</code></div>'"/>
+        <span class="photo-cap"><span class="dot"></span>Станция ASG&nbsp;400</span>
+      </div>
+      <div class="hero-spec">
+        <div class="ttl">Станция ASG&nbsp;400</div>
+        <div class="sub">Газопоршневая установка · природный газ ГОСТ · режим 24/7</div>
+        <div class="vs">
+          <div>
+            <div class="v">400 кВт</div>
+            <div class="u">Номинальная мощность</div>
+          </div>
+          <div>
+            <div class="v">320 кВт</div>
+            <div class="u">Постоянная мощность</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="col">
+        <div class="block">
+          <div class="h">Основные характеристики</div>
+          <table>
+            <tr><td>Модель</td><td>ASG&nbsp;400</td></tr>
+            <tr><td>Двигатель</td><td>Baudouin 6m33</td></tr>
+            <tr><td>Тип</td><td>Газопоршневая установка</td></tr>
+            <tr><td>Номинальная мощность</td><td>400 кВт</td></tr>
+            <tr><td>Постоянная мощность</td><td>320 кВт</td></tr>
+            <tr><td>Напряжение / частота</td><td>400 В · 50 Гц</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="block">
+          <div class="h">Обслуживание и гарантия</div>
+          <table>
+            <tr><td>Плановое ТО</td><td>входит в тариф</td></tr>
+            <tr><td>Гарантия</td><td>12 месяцев или 8 000 м/ч</td></tr>
+            <tr><td>Ресурс до капремонта</td><td>60 000 м/ч</td></tr>
+            <tr><td>Капитальный ремонт</td><td>оплачивается отдельно</td></tr>
+            <tr><td>Расчёт капремонта</td><td>по фактической наработке двигателя</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ftr">
+    <div><b>ООО «АСГАРД»</b> · оператор майнинговой инфраструктуры · ИНН&nbsp;7722494464</div>
+    <div class="r">asg-mining.ru</div>
+  </div>
+</section>
+
+<!-- ============================ PAGE 7 · TERMS / CONTACTS ============================ -->
+<section class="page terms">
+  <div class="hdr">
+    <div class="logo"><img src="assets/logo-asgard.svg" alt="ASGard"/></div>
+    <div class="hdr-right">
+      <div class="sec">Раздел 06 · Условия и&nbsp;контакты</div>
+      <div class="page-no">Стр 7 / 7</div>
+    </div>
+  </div>
+
+  <div class="body">
+    <h2>Условия и&nbsp;контакты</h2>
+    <div class="accent-line"></div>
+
+    <div class="special">
+      <div class="l">
+        <span class="badge">Тариф «под ключ»</span>
+        <h2>3,75&nbsp;₽/кВт·ч до&nbsp;1&nbsp;МВт · 3,5&nbsp;₽/кВт·ч свыше&nbsp;1&nbsp;МВт</h2>
+        <div class="desc">
+          Единый тариф включает газ, сервис, охрану, интернет и&nbsp;плановое ТО.
+          Общая планируемая мощность площадки — <b style="color:#fff">24&nbsp;МВт</b>.
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="conds">
+        <div class="h">Условия сделки</div>
+        <div class="tbl">
+          <table>
+            <tr><td>Стоимость 1&nbsp;станции ASG&nbsp;400</td><td>9 000 000 ₽ с НДС</td></tr>
+            <tr><td>Установочный платёж за&nbsp;ASIC</td><td>30 $ / шт</td></tr>
+            <tr><td>Срок поставки оборудования</td><td>уточняется по&nbsp;заявке</td></tr>
+            <tr><td>Срок действия КП</td><td>14 календарных дней</td></tr>
+          </table>
+        </div>
+        <div class="legal">
+          Все цены указаны с НДС&nbsp;22%. Настоящее коммерческое предложение не&nbsp;является офертой
+          в&nbsp;соответствии со&nbsp;ст.&nbsp;435&nbsp;ГК&nbsp;РФ.
+        </div>
+      </div>
+
+      <div class="contact">
+        <h3>Контакты</h3>
+        <div class="lines">
+          <div class="ln"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg></span><b>+7 (800) 550-07-32</b></div>
+          <div class="ln"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>info@asg-ard.ru</div>
+          <div class="ln"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 0 20"/><path d="M12 2a15 15 0 0 0 0 20"/></svg></span>asg-mining.ru</div>
+          <div class="ln"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12l-18 9 4-9-4-9z"/></svg></span>@asgard_technology</div>
+        </div>
+        <div class="who" style="margin-top:auto">
+          <div class="role">ООО «АСГАРД»</div>
+          <div class="reg">ИНН 7722494464</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ftr">
+    <div><b>ООО «АСГАРД»</b> · оператор майнинговой инфраструктуры · ИНН&nbsp;7722494464</div>
+    <div class="r">asg-mining.ru</div>
+  </div>
+</section>
+
+</body>
+</html>
